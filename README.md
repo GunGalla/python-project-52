@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec1c7475cadc36aa69ff/maintainability)](https://codeclimate.com/github/GunGalla/python-project-52/maintainability)
 
 You can check the project on this site:
-- 
+- https://hexlet-task-manager.up.railway.app/
 
 Minimum required software to install the project is:
 
