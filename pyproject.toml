@@ -8,6 +8,11 @@ packages = [
     {include = "hexlet_task_manager"},
     {include = "task_manager"},
 ]
+repository = "https://github.com/GunGalla/python-project-52"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -16,6 +21,8 @@ python-dotenv = "^1.0.0"
 django-extensions = "^3.2.1"
 dj-database-url = "^1.2.0"
 gunicorn = "^20.1.0"
+django-bootstrap4 = "^22.3"
+ipython = "^8.11.0"
 
 
 [tool.poetry.group.dev.dependencies]
