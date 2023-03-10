@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
-<div class="container-lg mt-3">
-    <h1></h1>
-    <div class="row">
-        <div class="col-12 col-md-10 col-lg-8 mx-auto border rounded-3 bg-light p-5">
-            <h1 class="display-3">Менеджер задач</h1>
-            <p class="lead">{{ message }}</p>
-        </div>
+<h1 class="my-4"> </h1>
+<h1 class="my-4"></h1>
+<div class="card">
+    <div class="card-body p-5 bg-light">
+        <div class="display-4">{% trans 'Task manager' %}</div>
+        <p class="lead">{% trans 'Organize your job!' %}</p>
+        <hr>
+        <a class="btn btn-primary btn-lg" href="https://github.com/GunGalla/python-project-52">
+            {% trans 'Project repository' %}
+        </a>
     </div>
-</div>
+</div>    
 {% endblock %}

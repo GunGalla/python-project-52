@@ -46,3 +46,6 @@ db-create:
 
 connect:
 	psql -d task_manager
+
+shell:
+	python manage.py shell_plus --ipython
