@@ -1,32 +1,68 @@
 """Django forms module."""
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.forms import CharField, PasswordInput
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+import re
 
 
 class UserRegistrationForm(ModelForm):
+    """Class to create form for user creation."""
     class Meta:
+        """Base settings"""
         model = User
-        fields = ["username", "email"]
+        fields = ['first_name', 'last_name', 'username']
 
-    password1 = CharField(label="password", widget=PasswordInput)
-    password2 = CharField(label="password confirm", widget=PasswordInput)
+    first_name = CharField(label=_('Name'), required=True)
 
-    # def clean_username(self):
-    #     username = self.cleaned_data.get("username")
-    #     if len(username) >= 5 and username[0].isupper():
-    #         return username
-    #     raise ValidationError("Длина имени >= 5, и первый символ в верхнем регистре")
+    last_name = CharField(label=_('Surname'), required=True)
+
+    username = CharField(
+        label=_('Username'),
+        help_text=_("Required field. 150 symbols max. "
+                    "It can contain only letters, digits and symbols @/./+/-/_."),
+        required=True,
+
+    )
+
+    password1 = CharField(
+        label=_("Password"),
+        widget=PasswordInput,
+        help_text=_('<ul><li>Your password must contain at least 3 symbols.</li></ul>'),
+    )
+
+    password2 = CharField(
+        label=_("Password confirm"),
+        widget=PasswordInput,
+        help_text=_('Please, enter password again for confirmation.')
+    )
+
+    def clean_username(self):
+        """Username validation"""
+        username = self.cleaned_data.get("username")
+        validation = User.objects.filter(username=username)
+        if len(validation) > 0:
+            raise ValidationError(_("User with that username already exists"))
+        pattern = r'^[\w.@+-]+$'
+        if not re.match(pattern, username):
+            raise ValidationError(
+                _("Enter correct username. It can contain only letters, digits and symbols @/./+/-/_")
+            )
+        return username
 
     def clean_password2(self):
+        """Password validation"""
         pass1 = self.cleaned_data.get("password1")
         pass2 = self.cleaned_data.get("password2")
-        if pass1 and pass2 and pass1 == pass2:
-            return pass2
-        raise ValidationError("Пароли не совпадают или пустые")
+        if pass1 != pass2:
+            raise ValidationError(_("Passwords do not match"))
+        if len(pass2) < 3:
+            raise ValidationError(_("Password is too short. It must contain at least 3 symbols."))
+        return pass2
 
     def save(self, commit=True):
+        """Saving password"""
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:

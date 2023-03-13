@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-10 13:02+0000\n"
+"POT-Creation-Date: 2023-03-13 14:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,64 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: task_manager/forms.py:17
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/forms.py:19
+msgid "Surname"
+msgstr "Фамилия"
+
+#: task_manager/forms.py:22 task_manager/templates/users.html:9
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/forms.py:23
+msgid ""
+"Required field. 150 symbols max. It can contain only letters, digits and "
+"symbols @/./+/-/_."
+msgstr ""
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
+"+/-/_."
+
+#: task_manager/forms.py:30
+#, fuzzy
+#| msgid "password"
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/forms.py:32
+msgid "<ul><li>Your password must contain at least 3 symbols.</li></ul>"
+msgstr "<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>"
+
+#: task_manager/forms.py:36
+msgid "Password confirm"
+msgstr "Подтверждение пароля"
+
+#: task_manager/forms.py:38
+msgid "Please, enter password again for confirmation."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: task_manager/forms.py:46
+msgid "User with that username already exists"
+msgstr "Пользователь с таким именем уже существует."
+
+#: task_manager/forms.py:50
+msgid ""
+"Enter correct username. It can contain only letters, digits and symbols @/./"
+"+/-/_"
+msgstr ""
+"Введите правильное имя пользователя. Оно может содержать только буквы, цифры "
+"и знаки @/./+/-/_."
+
+#: task_manager/forms.py:59
+msgid "Passwords do not match"
+msgstr "Введенные пароли не совпадают"
+
+#: task_manager/forms.py:61
+msgid "Password is too short. It must contain at least 3 symbols."
+msgstr "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
+
 #: task_manager/templates/base.html:8 task_manager/templates/base.html:16
 #: task_manager/templates/index.html:8
 msgid "Task manager"
@@ -29,15 +87,17 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:28
+#: task_manager/templates/base.html:28 task_manager/templates/login.html:4
+#: task_manager/templates/login.html:7
 msgid "Log in"
 msgstr "Войти"
 
 #: task_manager/templates/base.html:31
+#: task_manager/templates/user_create.html:4
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/base.html:47 task_manager/templates/index.html:12
+#: task_manager/templates/base.html:46 task_manager/templates/index.html:12
 msgid "Project repository"
 msgstr "Репозиторий проекта"
 
@@ -45,10 +105,9 @@ msgstr "Репозиторий проекта"
 msgid "Organize your job!"
 msgstr "Организуй свою работу!"
 
-#: task_manager/templates/users.html:9
-#| msgid "Users"
-msgid "Username"
-msgstr "Имя пользователя"
+#: task_manager/templates/user_create.html:8
+msgid "Register"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/users.html:10
 msgid "Full name"

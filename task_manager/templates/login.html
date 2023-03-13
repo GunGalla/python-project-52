@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load bootstrap4 i18n %}
+{% block content %}
+<h1 class="my-4">{% trans 'Log in' %}</h1>
+<form method="post" action="{% url 'index' %}" class="form">
+        {% csrf_token %}
+        <button name="submit" class="btn btn-primary">{% trans 'Log in' %}</button>
+</form>
+{% endblock %}
