@@ -2,8 +2,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from task_manager.forms import UserRegistrationForm, UserLoginForm
 from django.utils.translation import gettext_lazy as _
 
@@ -14,7 +15,7 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         """Home page"""
         return render(request, 'index.html')
-    
+
     def post(self, request, *args, **kwargs):
         """Home page"""
         return render(request, 'index.html')
@@ -46,6 +47,9 @@ class UsersCreate(View):
         """Sends user creation form"""
 
         form = UserRegistrationForm(request.POST)
+        validation = User.objects.filter(username=request.POST['username'])
+        if len(validation) > 0:
+            raise ValidationError(_("User with that username already exists"))
         if form.is_valid():
             form.save()
             return redirect('login')
@@ -65,11 +69,12 @@ class Login(View):
     def post(self, request, *args, **kwargs):
         """Auth"""
         form = UserLoginForm(request, data=request.POST)
-        print(form)
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-            user = auth.authenticate(request, username=username, password=password)
+            user = auth.authenticate(
+                request, username=username, password=password
+            )
             if user:
                 auth.login(request, user)
                 return redirect('index')
@@ -86,3 +91,33 @@ class Logout(View):
         """Logging out of site"""
         auth.logout(request)
         return redirect('index')
+
+
+class UserUpdate(LoginRequiredMixin, View):
+    """Edit user's data."""
+
+    def get(self, request, *args, **kwargs):
+        """Shows user form to further update"""
+
+        user_id = kwargs.get('id')
+        user = User.objects.get(id=user_id)
+        if request.user.id == user.id:
+            form = UserRegistrationForm(instance=user)
+            context = {'form': form, 'user_id': user_id}
+            return render(request, 'user_create.html', context)
+        return redirect('users')
+
+    def post(self, request, *args, **kwargs):
+        """Sends updated user info"""
+        user_id = kwargs.get('id')
+        user = User.objects.get(id=user_id)
+        form = UserRegistrationForm(request.POST, instance=user)
+        validation = User.objects.filter(username=request.POST['username'])
+        if request.POST['username'] != user.username and len(validation) > 0:
+            raise ValidationError(_("User with that username already exists"))
+        form.username = request.POST['username']
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+        context = {'form': form}
+        return render(request, 'user_create.html', context)

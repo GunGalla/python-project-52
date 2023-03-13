@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 17:08+0000\n"
+"POT-Creation-Date: 2023-03-13 20:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,29 +40,25 @@ msgstr ""
 "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
 "+/-/_."
 
-#: task_manager/forms.py:32
+#: task_manager/forms.py:31
 #, fuzzy
 #| msgid "password"
 msgid "Password"
 msgstr "Пароль"
 
-#: task_manager/forms.py:34
+#: task_manager/forms.py:33
 msgid "<ul><li>Your password must contain at least 3 symbols.</li></ul>"
 msgstr "<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>"
 
-#: task_manager/forms.py:39
+#: task_manager/forms.py:38
 msgid "Password confirm"
 msgstr "Подтверждение пароля"
 
-#: task_manager/forms.py:41
+#: task_manager/forms.py:40
 msgid "Please, enter password again for confirmation."
 msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
 
 #: task_manager/forms.py:49
-msgid "User with that username already exists"
-msgstr "Пользователь с таким именем уже существует."
-
-#: task_manager/forms.py:53
 msgid ""
 "Enter correct username. It can contain only letters, digits and symbols @/./"
 "+/-/_"
@@ -70,11 +66,11 @@ msgstr ""
 "Введите правильное имя пользователя. Оно может содержать только буквы, цифры "
 "и знаки @/./+/-/_."
 
-#: task_manager/forms.py:63
+#: task_manager/forms.py:59
 msgid "Passwords do not match"
 msgstr "Введенные пароли не совпадают"
 
-#: task_manager/forms.py:65
+#: task_manager/forms.py:61
 msgid "Password is too short. It must contain at least 3 symbols."
 msgstr ""
 "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
@@ -110,7 +106,7 @@ msgid "Log in"
 msgstr "Вход"
 
 #: task_manager/templates/base.html:50
-#: task_manager/templates/user_create.html:4
+#: task_manager/templates/user_create.html:7
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -122,7 +118,15 @@ msgstr "Репозиторий проекта"
 msgid "Organize your job!"
 msgstr "Организуй свою работу!"
 
-#: task_manager/templates/user_create.html:8
+#: task_manager/templates/user_create.html:5
+msgid "User update"
+msgstr "Изменение пользователя"
+
+#: task_manager/templates/user_create.html:13
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/templates/user_create.html:15
 msgid "Register"
 msgstr "Зарегистрировать"
 
@@ -141,3 +145,7 @@ msgstr "Изменить"
 #: task_manager/templates/users.html:26
 msgid "Delete"
 msgstr "Удалить"
+
+#: task_manager/views.py:52 task_manager/views.py:117
+msgid "User with that username already exists"
+msgstr "Пользователь с таким именем уже существует."

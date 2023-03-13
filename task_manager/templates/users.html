@@ -21,7 +21,7 @@
             <td>{{ user.first_name }} {{ user.last_name }}</td>
             <td>{{ user.created_at }}</td>
             <td>
-                <a href="">{% trans 'Edit' %}</a>
+                <a href="{% url 'upd_user' user.id %}">{% trans 'Edit' %}</a>
                 <br>
                 <a href="">{% trans 'Delete' %}</a>
             </td>

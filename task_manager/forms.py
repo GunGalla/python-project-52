@@ -25,7 +25,6 @@ class UserRegistrationForm(ModelForm):
                     "It can contain only letters,"
                     " digits and symbols @/./+/-/_."),
         required=True,
-
     )
 
     password1 = CharField(
@@ -44,9 +43,6 @@ class UserRegistrationForm(ModelForm):
     def clean_username(self):
         """Username validation"""
         username = self.cleaned_data.get("username")
-        validation = User.objects.filter(username=username)
-        if len(validation) > 0:
-            raise ValidationError(_("User with that username already exists"))
         pattern = r'^[\w.@+-]+$'
         if not re.match(pattern, username):
             raise ValidationError(
