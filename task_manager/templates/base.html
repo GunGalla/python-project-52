@@ -22,7 +22,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users' %}">{% trans 'Users' %}</a>
                 </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="">{% trans 'Statuses' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">{% trans 'Tags' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">{% trans 'Tasks' %}</a>
+                </li>
+                {% endif %}
             </ul>
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav">
+                <form action="/logout/" method="post">
+                    {% csrf_token %}
+                    <input class="btn nav-link" type="submit" value="{% trans 'Log out' %}">
+                </form>
+            </ul>
+            {% else %}
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">{% trans 'Log in' %}</a>
@@ -31,13 +50,12 @@
                     <a class="nav-link" href="{% url 'create' %}">{% trans 'Registration' %}</a>
                 </li>
             </ul>
+            {% endif %}
         </div>
     </nav>
     <div class="container wrapper flex-grow-1">
-                {% block page_header %}{% endblock page_header %}
-                {% block content %}{% endblock content %}
-            </div>
-        </div>
+        {% block page_header %}{% endblock page_header %}
+        {% block content %}{% endblock content %}
     </div>
     <footer>
         <div class="container my-5 pt-4 border-top">

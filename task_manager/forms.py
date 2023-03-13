@@ -1,5 +1,6 @@
 """Django forms module."""
 from django.forms import ModelForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import CharField, PasswordInput
 from django.core.exceptions import ValidationError
@@ -21,7 +22,8 @@ class UserRegistrationForm(ModelForm):
     username = CharField(
         label=_('Username'),
         help_text=_("Required field. 150 symbols max. "
-                    "It can contain only letters, digits and symbols @/./+/-/_."),
+                    "It can contain only letters,"
+                    " digits and symbols @/./+/-/_."),
         required=True,
 
     )
@@ -29,7 +31,8 @@ class UserRegistrationForm(ModelForm):
     password1 = CharField(
         label=_("Password"),
         widget=PasswordInput,
-        help_text=_('<ul><li>Your password must contain at least 3 symbols.</li></ul>'),
+        help_text=_('<ul><li>Your password must contain'
+                    ' at least 3 symbols.</li></ul>'),
     )
 
     password2 = CharField(
@@ -47,7 +50,8 @@ class UserRegistrationForm(ModelForm):
         pattern = r'^[\w.@+-]+$'
         if not re.match(pattern, username):
             raise ValidationError(
-                _("Enter correct username. It can contain only letters, digits and symbols @/./+/-/_")
+                _("Enter correct username. It can contain only letters,"
+                  " digits and symbols @/./+/-/_")
             )
         return username
 
@@ -58,7 +62,8 @@ class UserRegistrationForm(ModelForm):
         if pass1 != pass2:
             raise ValidationError(_("Passwords do not match"))
         if len(pass2) < 3:
-            raise ValidationError(_("Password is too short. It must contain at least 3 symbols."))
+            raise ValidationError(_("Password is too short."
+                                    " It must contain at least 3 symbols."))
         return pass2
 
     def save(self, commit=True):
@@ -68,3 +73,8 @@ class UserRegistrationForm(ModelForm):
         if commit:
             user.save()
         return user
+
+
+class UserLoginForm(AuthenticationForm):
+    """Log in class"""
+    pass
