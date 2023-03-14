@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.forms import CharField, PasswordInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-import re
 
 
 class UserRegistrationForm(ModelForm):
@@ -13,7 +12,13 @@ class UserRegistrationForm(ModelForm):
     class Meta:
         """Base settings"""
         model = User
-        fields = ['first_name', 'last_name', 'username']
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'password1',
+            'password2',
+        ]
 
     first_name = CharField(label=_('Name'), required=True)
 
@@ -39,17 +44,6 @@ class UserRegistrationForm(ModelForm):
         widget=PasswordInput,
         help_text=_('Please, enter password again for confirmation.')
     )
-
-    def clean_username(self):
-        """Username validation"""
-        username = self.cleaned_data.get("username")
-        pattern = r'^[\w.@+-]+$'
-        if not re.match(pattern, username):
-            raise ValidationError(
-                _("Enter correct username. It can contain only letters,"
-                  " digits and symbols @/./+/-/_")
-            )
-        return username
 
     def clean_password2(self):
         """Password validation"""
