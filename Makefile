@@ -14,7 +14,7 @@ package-install:
 	python3 -m pip install --force-reinstall dist/*.whl
 
 lint:
-	poetry run flake8 task_manager users
+	poetry run flake8 task_manager users statuses
 
 selfcheck:
 	poetry check
@@ -49,9 +49,3 @@ connect:
 
 shell:
 	python manage.py shell_plus --ipython
-
-trans prep ru:
-	python manage.py makemessages -l ru
-
-trans apply ru:
-	python manage.py compilemessages -l ru

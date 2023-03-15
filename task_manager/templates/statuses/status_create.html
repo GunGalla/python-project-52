@@ -1,18 +1,10 @@
 {% extends 'base.html' %}
 {% load bootstrap4 i18n %}
 {% block content %}
-{% if request.user.is_authenticated %}
-<h1 class="my-4">{% trans 'User update' %}</h1>
-{% else %}
-<h1 class="my-4">{% trans 'Registration' %}</h1>
-{% endif %}
+<h1 class="my-4"> {% trans 'Create status' %} </h1>
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% if request.user.is_authenticated %}
-    <input class="btn btn-primary" type="submit" value="{% trans 'Update' %}">
-    {% else %}
-    <input class="btn btn-primary" type="submit" value="{% trans 'Register' %}">
-    {% endif %}
+    <input class="btn btn-primary" type="submit" value="{% trans 'Create' %}">
 </form>
 {% endblock %}
