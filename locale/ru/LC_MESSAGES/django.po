@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 10:32+0000\n"
+"POT-Creation-Date: 2023-03-15 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: task_manager/templates/base.html:8 task_manager/templates/base.html:16
-#: task_manager/templates/index.html:8
+#: task_manager/templates/index.html:9
 msgid "Task manager"
 msgstr "Менеджер задач"
 
@@ -56,11 +56,11 @@ msgstr "Вход"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/base.html:64 task_manager/templates/index.html:12
+#: task_manager/templates/base.html:65 task_manager/templates/index.html:13
 msgid "Project repository"
 msgstr "Репозиторий проекта"
 
-#: task_manager/templates/index.html:9
+#: task_manager/templates/index.html:10
 msgid "Organize your job!"
 msgstr "Организуй свою работу!"
 
@@ -108,6 +108,14 @@ msgstr "Изменить"
 msgid "Delete"
 msgstr "Удалить"
 
+#: task_manager/views.py:44
+msgid "You logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:58
+msgid "You logged out"
+msgstr "Вы разлогинены"
+
 #: users/forms.py:22
 msgid "Name"
 msgstr "Имя"
@@ -151,9 +159,25 @@ msgid "Password is too short. It must contain at least 3 symbols."
 msgstr ""
 "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
 
-#: users/views.py:48 users/views.py:80
+#: users/views.py:39
+msgid "User successfully registered"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: users/views.py:56 users/views.py:95
 msgid "You are not authorized! Please, complete log in."
-msgstr ""
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: users/views.py:66 users/views.py:103
+msgid "You have no permission to change other users"
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: users/views.py:78
+msgid "User successfully changed"
+msgstr "Пользователь успешно изменён"
+
+#: users/views.py:112
+msgid "User successfully deleted"
+msgstr "Пользователь успешно удалён"
 
 #~ msgid ""
 #~ "Enter correct username. It can contain only letters, digits and symbols "
