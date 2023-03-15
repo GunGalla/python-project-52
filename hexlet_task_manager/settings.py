@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # My apps
     'task_manager',
     'users',
+    'statuses',
 
     # Third party apps
     'django_extensions',
