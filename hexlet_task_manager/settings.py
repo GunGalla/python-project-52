@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # My apps
     'task_manager',
+    'users',
+
+    # Third party apps
     'django_extensions',
     'bootstrap4',
 ]
