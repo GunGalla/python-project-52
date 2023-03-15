@@ -49,3 +49,9 @@ connect:
 
 shell:
 	python manage.py shell_plus --ipython
+
+trans prep ru:
+	python manage.py makemessages -l ru
+
+trans apply ru:
+	python manage.py compilemessages -l ru

@@ -19,11 +19,11 @@
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.first_name }} {{ user.last_name }}</td>
-            <td>{{ user.created_at }}</td>
+            <td>{{ user.date_joined }}</td>
             <td>
                 <a href="{% url 'users:upd_user' user.id %}">{% trans 'Edit' %}</a>
                 <br>
-                <a href="">{% trans 'Delete' %}</a>
+                <a href="{% url 'users:del_user' user.id %}">{% trans 'Delete' %}</a>
             </td>
        </tr> 
        {% endfor %}

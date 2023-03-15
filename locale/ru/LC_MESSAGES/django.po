@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 20:25+0000\n"
+"POT-Creation-Date: 2023-03-15 10:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,67 +20,13 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/forms.py:18
-msgid "Name"
-msgstr "Имя"
-
-#: task_manager/forms.py:20
-msgid "Surname"
-msgstr "Фамилия"
-
-#: task_manager/forms.py:23 task_manager/templates/users.html:9
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: task_manager/forms.py:24
-msgid ""
-"Required field. 150 symbols max. It can contain only letters, digits and "
-"symbols @/./+/-/_."
-msgstr ""
-"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
-"+/-/_."
-
-#: task_manager/forms.py:31
-#, fuzzy
-#| msgid "password"
-msgid "Password"
-msgstr "Пароль"
-
-#: task_manager/forms.py:33
-msgid "<ul><li>Your password must contain at least 3 symbols.</li></ul>"
-msgstr "<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>"
-
-#: task_manager/forms.py:38
-msgid "Password confirm"
-msgstr "Подтверждение пароля"
-
-#: task_manager/forms.py:40
-msgid "Please, enter password again for confirmation."
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
-
-#: task_manager/forms.py:49
-msgid ""
-"Enter correct username. It can contain only letters, digits and symbols @/./"
-"+/-/_"
-msgstr ""
-"Введите правильное имя пользователя. Оно может содержать только буквы, цифры "
-"и знаки @/./+/-/_."
-
-#: task_manager/forms.py:59
-msgid "Passwords do not match"
-msgstr "Введенные пароли не совпадают"
-
-#: task_manager/forms.py:61
-msgid "Password is too short. It must contain at least 3 symbols."
-msgstr ""
-"Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
-
 #: task_manager/templates/base.html:8 task_manager/templates/base.html:16
 #: task_manager/templates/index.html:8
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/base.html:23 task_manager/templates/users.html:4
+#: task_manager/templates/base.html:23
+#: task_manager/templates/users/users.html:4
 msgid "Users"
 msgstr "Пользователи"
 
@@ -106,7 +52,7 @@ msgid "Log in"
 msgstr "Вход"
 
 #: task_manager/templates/base.html:50
-#: task_manager/templates/user_create.html:7
+#: task_manager/templates/users/user_create.html:7
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -118,34 +64,103 @@ msgstr "Репозиторий проекта"
 msgid "Organize your job!"
 msgstr "Организуй свою работу!"
 
-#: task_manager/templates/user_create.html:5
+#: task_manager/templates/users/user_create.html:5
 msgid "User update"
 msgstr "Изменение пользователя"
 
-#: task_manager/templates/user_create.html:13
+#: task_manager/templates/users/user_create.html:13
 msgid "Update"
 msgstr "Изменить"
 
-#: task_manager/templates/user_create.html:15
+#: task_manager/templates/users/user_create.html:15
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: task_manager/templates/users.html:10
+#: task_manager/templates/users/user_delete.html:4
+msgid "User delete"
+msgstr "Удаление пользователя"
+
+#: task_manager/templates/users/user_delete.html:5
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/users/user_delete.html:8
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: task_manager/templates/users/users.html:9 users/forms.py:27
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/users/users.html:10
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/templates/users.html:11
+#: task_manager/templates/users/users.html:11
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: task_manager/templates/users.html:24
+#: task_manager/templates/users/users.html:24
 msgid "Edit"
 msgstr "Изменить"
 
-#: task_manager/templates/users.html:26
+#: task_manager/templates/users/users.html:26
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/views.py:52 task_manager/views.py:117
-msgid "User with that username already exists"
-msgstr "Пользователь с таким именем уже существует."
+#: users/forms.py:22
+msgid "Name"
+msgstr "Имя"
+
+#: users/forms.py:24
+msgid "Surname"
+msgstr "Фамилия"
+
+#: users/forms.py:28
+msgid ""
+"Required field. 150 symbols max. It can contain only letters, digits and "
+"symbols @/./+/-/_."
+msgstr ""
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
+"+/-/_."
+
+#: users/forms.py:35
+#, fuzzy
+#| msgid "password"
+msgid "Password"
+msgstr "Пароль"
+
+#: users/forms.py:37
+msgid "<ul><li>Your password must contain at least 3 symbols.</li></ul>"
+msgstr "<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>"
+
+#: users/forms.py:42
+msgid "Password confirm"
+msgstr "Подтверждение пароля"
+
+#: users/forms.py:44
+msgid "Please, enter password again for confirmation."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: users/forms.py:52
+msgid "Passwords do not match"
+msgstr "Введенные пароли не совпадают"
+
+#: users/forms.py:54
+msgid "Password is too short. It must contain at least 3 symbols."
+msgstr ""
+"Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
+
+#: users/views.py:48 users/views.py:80
+msgid "You are not authorized! Please, complete log in."
+msgstr ""
+
+#~ msgid ""
+#~ "Enter correct username. It can contain only letters, digits and symbols "
+#~ "@/./+/-/_"
+#~ msgstr ""
+#~ "Введите правильное имя пользователя. Оно может содержать только буквы, "
+#~ "цифры и знаки @/./+/-/_."
+
+#~ msgid "User with that username already exists"
+#~ msgstr "Пользователь с таким именем уже существует."
