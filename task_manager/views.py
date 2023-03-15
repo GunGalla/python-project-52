@@ -1,9 +1,10 @@
 """Views module"""
 from django.shortcuts import render, HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.views import View
-# from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .forms import UserLoginForm
 
@@ -40,6 +41,7 @@ class Login(View):
             )
             if user:
                 login(request, user)
+                messages.success(request, _('You logged in'))
                 return HttpResponseRedirect(reverse_lazy('index'))
 
         else:
@@ -53,4 +55,5 @@ class Logout(View):
     def post(self, request, *args, **kwargs):
         """Logging out of site"""
         logout(request)
+        messages.info(request, _('You logged out'))
         return HttpResponseRedirect(reverse_lazy('index'))

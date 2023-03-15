@@ -54,6 +54,7 @@
         </div>
     </nav>
     <div class="container wrapper flex-grow-1">
+        {% include 'inc/flash_messages.html' %}
         {% block page_header %}{% endblock page_header %}
         {% block content %}{% endblock content %}
     </div>
