@@ -54,32 +54,26 @@ class StatusUpdate(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         """Shows user form to further update"""
 
-        user_id = kwargs.get('id')
-        user = Status.objects.get(id=user_id)
+        status_id = kwargs.get('id')
+        status = Status.objects.get(id=status_id)
 
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not authorized! Please, complete log in.')
-            )
-            return HttpResponseRedirect(reverse_lazy('statuses:index'))
-
-        if request.user.id == user.id:
-            form = StatusCreationForm(instance=user)
-            context = {'form': form, 'user_id': user_id}
-            return render(request, 'users/user_create.html', context)
+        form = StatusCreationForm(instance=status)
+        context = {'form': form, 'status_id': status_id}
+        return render(request, 'statuses/status_update.html', context)
 
     def post(self, request, *args, **kwargs):
         """Sends updated user info"""
-        user_id = kwargs.get('id')
-        user = Status.objects.get(id=user_id)
-        form = StatusCreationForm(request.POST, instance=user)
+
+        status_id = kwargs.get('id')
+        status = Status.objects.get(id=status_id)
+        form = StatusCreationForm(request.POST, instance=status)
 
         if form.is_valid():
             form.save()
-            messages.success(request, _('User successfully changed'))
-            return HttpResponseRedirect(reverse_lazy('users:index'))
+            messages.success(request, _('Status successfully changed'))
+            return HttpResponseRedirect(reverse_lazy('statuses:index'))
         context = {'form': form}
-        return render(request, 'users/user_create.html', context)
+        return render(request, 'statuses/status_create.html', context)
 
 
 class StatusDelete(LoginRequiredMixin, View):
