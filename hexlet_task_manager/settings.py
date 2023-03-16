@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'task_manager',
     'users',
     'statuses',
+    'tasks',
 
     # Third party apps
     'django_extensions',
@@ -120,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
     ('en-us', 'English'),
