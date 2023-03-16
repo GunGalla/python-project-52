@@ -11,11 +11,11 @@ from statuses.forms import StatusCreationForm
 
 
 class StatusesView(LoginRequiredMixin, View):
-    """Users list page"""
+    """Statuses list page"""
     login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
-        """Getting all registered users"""
+        """Getting all registered statuses"""
         statuses = Status.objects.all()
         context = {'statuses': statuses}
         if statuses:
@@ -25,18 +25,18 @@ class StatusesView(LoginRequiredMixin, View):
 
 
 class StatusCreate(LoginRequiredMixin, View):
-    """Views, related to users creation"""
+    """Views, related to statuses creation"""
     login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
-        """Shows user creation form"""
+        """Shows status creation form"""
 
         form = StatusCreationForm()
         context = {'form': form}
         return render(request, 'statuses/status_create.html', context)
 
     def post(self, request, *args, **kwargs):
-        """Sends user creation form"""
+        """Sends status creation form"""
 
         form = StatusCreationForm(request.POST)
         if form.is_valid():
@@ -48,11 +48,11 @@ class StatusCreate(LoginRequiredMixin, View):
 
 
 class StatusUpdate(LoginRequiredMixin, View):
-    """Edit user's data."""
+    """Edit status data."""
     login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
-        """Shows user form to further update"""
+        """Shows status form to further update"""
 
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
@@ -62,7 +62,7 @@ class StatusUpdate(LoginRequiredMixin, View):
         return render(request, 'statuses/status_update.html', context)
 
     def post(self, request, *args, **kwargs):
-        """Sends updated user info"""
+        """Sends updated status info"""
 
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
@@ -77,33 +77,22 @@ class StatusUpdate(LoginRequiredMixin, View):
 
 
 class StatusDelete(LoginRequiredMixin, View):
-    """Delete user"""
+    """Delete status"""
     login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         """Shows alert and delete confirmation"""
 
-        user_id = kwargs.get('id')
-        user = Status.objects.get(id=user_id)
+        status_id = kwargs.get('id')
+        status = Status.objects.get(id=status_id)
+        context = {'status': status}
 
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not authorized! Please, complete log in.')
-            )
-            return HttpResponseRedirect(reverse_lazy('login'))
-
-        if request.user.id == user.id:
-            return render(request, 'users/user_delete.html')
-
-        messages.error(
-            request, _('You have no permission to change other users')
-        )
-        return HttpResponseRedirect(reverse_lazy('users:index'))
+        return render(request, 'statuses/status_delete.html', context)
 
     def post(self, request, *args, **kwargs):
-        """Delete user"""
-        user_id = kwargs.get('id')
-        user = Status.objects.get(id=user_id)
-        user.delete()
-        messages.success(request, _('User successfully deleted'))
-        return HttpResponseRedirect(reverse_lazy('users:index'))
+        """Delete status"""
+        status_id = kwargs.get('id')
+        status = Status.objects.get(id=status_id)
+        status.delete()
+        messages.success(request, _('Status successfully deleted'))
+        return HttpResponseRedirect(reverse_lazy('statuses:index'))

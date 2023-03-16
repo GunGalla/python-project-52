@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 20:38+0000\n"
+"POT-Creation-Date: 2023-03-16 11:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,35 +20,22 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: statuses/forms.py:15 task_manager/templates/statuses/statuses.html:10
-#: users/forms.py:21
+#: statuses/forms.py:15 statuses/models.py:9
+#: task_manager/templates/statuses/statuses.html:10 users/forms.py:21
 msgid "Name"
 msgstr "Имя"
 
-#: statuses/views.py:45
+#: statuses/views.py:44
 msgid "Status successfully created"
-msgstr "Пользователь успешно изменён"
+msgstr "Статус успешно создан"
 
-#: statuses/views.py:47
-msgid "Task status with that Name already exists"
-msgstr "Task status с таким Имя уже существует."
+#: statuses/views.py:73
+msgid "Status successfully changed"
+msgstr "Статус успешно изменён"
 
-#: statuses/views.py:64 statuses/views.py:99 users/views.py:56
-#: users/views.py:95
-msgid "You are not authorized! Please, complete log in."
-msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
-
-#: statuses/views.py:81 users/views.py:78
-msgid "User successfully changed"
-msgstr "Пользователь успешно изменён"
-
-#: statuses/views.py:107 users/views.py:66 users/views.py:103
-msgid "You have no permission to change other users"
-msgstr "У вас нет прав для изменения другого пользователя."
-
-#: statuses/views.py:116 users/views.py:112
-msgid "User successfully deleted"
-msgstr "Пользователь успешно удалён"
+#: statuses/views.py:97
+msgid "Status successfully deleted"
+msgstr "Статус успешно удалён"
 
 #: task_manager/templates/base.html:8 task_manager/templates/base.html:16
 #: task_manager/templates/index.html:9
@@ -105,9 +92,8 @@ msgid "Create"
 msgstr "Создать"
 
 #: task_manager/templates/statuses/status_delete.html:4
-#: task_manager/templates/users/user_delete.html:4
-msgid "User delete"
-msgstr "Удаление пользователя"
+msgid "Status delete"
+msgstr "Удаление статуса"
 
 #: task_manager/templates/statuses/status_delete.html:5
 #: task_manager/templates/users/user_delete.html:5
@@ -118,6 +104,15 @@ msgstr "Вы уверены, что хотите удалить"
 #: task_manager/templates/users/user_delete.html:8
 msgid "Yes, delete"
 msgstr "Да, удалить"
+
+#: task_manager/templates/statuses/status_update.html:4
+msgid "Update status"
+msgstr "Изменение статуса"
+
+#: task_manager/templates/statuses/status_update.html:8
+#: task_manager/templates/users/user_create.html:13
+msgid "Update"
+msgstr "Изменить"
 
 #: task_manager/templates/statuses/statuses.html:11
 #: task_manager/templates/users/users.html:11
@@ -138,13 +133,13 @@ msgstr "Удалить"
 msgid "User update"
 msgstr "Изменение пользователя"
 
-#: task_manager/templates/users/user_create.html:13
-msgid "Update"
-msgstr "Изменить"
-
 #: task_manager/templates/users/user_create.html:15
 msgid "Register"
 msgstr "Зарегистрировать"
+
+#: task_manager/templates/users/user_delete.html:4
+msgid "User delete"
+msgstr "Удаление пользователя"
 
 #: task_manager/templates/users/users.html:9 users/forms.py:26
 msgid "Username"
@@ -204,6 +199,25 @@ msgstr ""
 #: users/views.py:39
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
+
+#: users/views.py:56 users/views.py:95
+msgid "You are not authorized! Please, complete log in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: users/views.py:66 users/views.py:103
+msgid "You have no permission to change other users"
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: users/views.py:78
+msgid "User successfully changed"
+msgstr "Пользователь успешно изменён"
+
+#: users/views.py:112
+msgid "User successfully deleted"
+msgstr "Пользователь успешно удалён"
+
+#~ msgid "Task status with that Name already exists"
+#~ msgstr "Task status с таким Имя уже существует."
 
 #~ msgid ""
 #~ "Enter correct username. It can contain only letters, digits and symbols "
