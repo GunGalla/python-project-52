@@ -88,8 +88,13 @@ class TaskDeleteView(LoginRequiredMixin, View):
         task_id = kwargs.get('id')
         task = Task.objects.get(id=task_id)
         context = {'task': task}
+        if request.user.id == task.author.id:
+            return render(request, 'tasks/task_delete.html', context)
 
-        return render(request, 'tasks/task_delete.html', context)
+        messages.error(
+            request, _('Only author can delete task')
+        )
+        return HttpResponseRedirect(reverse_lazy('tasks:index'))
 
     def post(self, request, *args, **kwargs):
         """Delete task"""

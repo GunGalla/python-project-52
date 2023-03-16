@@ -11,5 +11,3 @@ class TaskCreationForm(ModelForm):
         """Base settings"""
         model = Task
         fields = ['name', 'description', 'status', 'user', 'tag']
-
-    name = CharField(label=_('Name'))
