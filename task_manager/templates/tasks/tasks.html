@@ -2,7 +2,7 @@
 {% load bootstrap4 i18n %}
 {% block content %}
 <h1 class="my-4"> {% trans 'Tasks' %} </h1>
-<a class="nav-link" href="{% url 'statuses:create' %}">{% trans 'Create task' %}</a>
+<a class="nav-link" href="{% url 'tasks:create' %}">{% trans 'Create task' %}</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,11 +24,11 @@
             <td>{{ task.status }}</td>
             <td>{{ task.author }}</td>
             <td>{{ task.executor }}</td>
-            <td>{{ status.creation_date }}</td>
+            <td>{{ task.creation_date }}</td>
             <td>
-                <a href="{% url 'tasks:upd_task' task.id %}">{% trans 'Edit' %}</a>
+                <a href="{% url 'tasks:upd_tasks' task.id %}">{% trans 'Edit' %}</a>
                 <br>
-                <a href="{% url 'tasks:del_task' task.id %}">{% trans 'Delete' %}</a>
+                <a href="{% url 'tasks:del_tasks' task.id %}">{% trans 'Delete' %}</a>
             </td>
        </tr> 
        {% endfor %}

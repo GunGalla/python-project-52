@@ -14,4 +14,4 @@ class Status(models.Model):
         verbose_name = 'Task status'
 
     def __str__(self):
-        return f'Status: {self.name}'
+        return self.name

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-16 13:58+0000\n"
+"POT-Creation-Date: 2023-03-16 15:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: statuses/forms.py:15 statuses/models.py:9
 #: task_manager/templates/statuses/statuses.html:10
 #: task_manager/templates/tasks/tasks.html:10 tasks/forms.py:15
-#: tasks/models.py:12 users/forms.py:21
+#: tasks/models.py:16 users/forms.py:21
 msgid "Name"
 msgstr "Имя"
 
@@ -87,7 +87,6 @@ msgstr "Организуй свою работу!"
 
 #: task_manager/templates/statuses/status_create.html:4
 #: task_manager/templates/statuses/statuses.html:5
-#: task_manager/templates/tasks/task_create.html:4
 msgid "Create status"
 msgstr "Создать статус"
 
@@ -114,9 +113,8 @@ msgid "Yes, delete"
 msgstr "Да, удалить"
 
 #: task_manager/templates/statuses/status_update.html:4
-#: task_manager/templates/tasks/task_update.html:4
-msgid "Update status"
-msgstr "Изменение статуса"
+msgid "Update task"
+msgstr "Изменение задачи"
 
 #: task_manager/templates/statuses/status_update.html:8
 #: task_manager/templates/tasks/task_update.html:8
@@ -142,11 +140,16 @@ msgstr "Изменить"
 msgid "Delete"
 msgstr "Удалить"
 
+#: task_manager/templates/tasks/task_create.html:4
 #: task_manager/templates/tasks/tasks.html:5
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/templates/tasks/tasks.html:11
+#: task_manager/templates/tasks/task_update.html:4
+msgid "Update status"
+msgstr "Изменение статуса"
+
+#: task_manager/templates/tasks/tasks.html:11 tasks/models.py:26
 msgid "Status"
 msgstr "Статус"
 
@@ -186,15 +189,43 @@ msgstr "Вы залогинены"
 msgid "You logged out"
 msgstr "Вы разлогинены"
 
-#: tasks/views.py:44
+#: tasks/models.py:13
+msgid "author"
+msgstr "Автор"
+
+#: tasks/models.py:19
+msgid "Description"
+msgstr "Описание"
+
+#: tasks/models.py:25
+msgid "status"
+msgstr "Статус"
+
+#: tasks/models.py:33
+msgid "executor"
+msgstr "Исполнитель"
+
+#: tasks/models.py:34
+msgid "User"
+msgstr "Исполнитель"
+
+#: tasks/models.py:42
+msgid "tag"
+msgstr "Метки"
+
+#: tasks/models.py:43
+msgid "Tag"
+msgstr "Метки"
+
+#: tasks/views.py:46
 msgid "task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:73
+#: tasks/views.py:75
 msgid "task successfully changed"
 msgstr "Задача успешно изменёна"
 
-#: tasks/views.py:97
+#: tasks/views.py:99
 msgid "task successfully deleted"
 msgstr "Задача успешно удалёна"
 

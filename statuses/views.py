@@ -73,7 +73,7 @@ class StatusUpdate(LoginRequiredMixin, View):
             messages.success(request, _('Status successfully changed'))
             return HttpResponseRedirect(reverse_lazy('statuses:index'))
         context = {'form': form}
-        return render(request, 'statuses/status_create.html', context)
+        return render(request, 'statuses/status_update.html', context)
 
 
 class StatusDelete(LoginRequiredMixin, View):

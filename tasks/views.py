@@ -24,7 +24,7 @@ class TasksView(LoginRequiredMixin, View):
             return render(request, 'tasks/tasks.html')
 
 
-class TaskCreate(LoginRequiredMixin, View):
+class TaskCreateView(LoginRequiredMixin, View):
     """Views, related to task creation"""
     login_url = reverse_lazy('login')
 
@@ -40,14 +40,16 @@ class TaskCreate(LoginRequiredMixin, View):
 
         form = TaskCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.author = request.user
+            task.save()
             messages.success(request, _('task successfully created'))
             return HttpResponseRedirect(reverse_lazy('tasks:index'))
         context = {'form': form}
         return render(request, 'tasks/task_create.html', context)
 
 
-class TaskUpdate(LoginRequiredMixin, View):
+class TaskUpdateView(LoginRequiredMixin, View):
     """Edit task data."""
     login_url = reverse_lazy('login')
 
@@ -73,10 +75,10 @@ class TaskUpdate(LoginRequiredMixin, View):
             messages.success(request, _('task successfully changed'))
             return HttpResponseRedirect(reverse_lazy('tasks:index'))
         context = {'form': form}
-        return render(request, 'tasks/task_create.html', context)
+        return render(request, 'tasks/task_update.html', context)
 
 
-class TaskDelete(LoginRequiredMixin, View):
+class TaskDeleteView(LoginRequiredMixin, View):
     """Delete task"""
     login_url = reverse_lazy('login')
 
