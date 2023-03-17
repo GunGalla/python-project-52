@@ -11,7 +11,7 @@ class TaskCreationForm(ModelForm):
     class Meta:
         """Base settings"""
         model = Task
-        fields = ['name', 'description', 'status', 'user', 'tag']
+        fields = ['name', 'description', 'status', 'user', 'label']
 
     # tag = ModelMultipleChoiceField(
     #     label=_('Tag'),

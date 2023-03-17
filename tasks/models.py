@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
 from statuses.models import Status
+from labels.models import Label
 
 
 class Task(models.Model):
@@ -34,13 +35,10 @@ class Task(models.Model):
         verbose_name=_('User')
     )
 
-    tag = models.ForeignKey(
-        to=Status,
-        on_delete=models.PROTECT,
-        null=True,
-        blank=True,
-        related_name=_('tag'),
-        verbose_name=_('Tag')
+    label = models.ManyToManyField(
+        to=Label,
+        related_name=_('label'),
+        verbose_name=_('Label'),
     )
 
     creation_date = models.DateTimeField(auto_now=True)

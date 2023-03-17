@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'users',
     'statuses',
     'tasks',
+    'labels',
 
     # Third party apps
     'django_extensions',
