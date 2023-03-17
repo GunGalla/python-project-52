@@ -24,6 +24,18 @@ class TasksView(LoginRequiredMixin, View):
             return render(request, 'tasks/tasks.html')
 
 
+class TaskView(LoginRequiredMixin, View):
+    """Current task page"""
+    login_url = reverse_lazy('login')
+
+    def get(self, request, *args, **kwargs):
+        """Getting distinct task"""
+        task_id = kwargs.get('id')
+        task = Task.objects.get(id=task_id)
+        context = {'task': task}
+        return render(request, 'tasks/task.html', context)
+
+
 class TaskCreateView(LoginRequiredMixin, View):
     """Views, related to task creation"""
     login_url = reverse_lazy('login')

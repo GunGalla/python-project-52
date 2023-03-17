@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-16 15:31+0000\n"
+"POT-Creation-Date: 2023-03-17 10:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,22 +122,48 @@ msgid "Update"
 msgstr "Изменить"
 
 #: task_manager/templates/statuses/statuses.html:11
+#: task_manager/templates/tasks/task.html:26
 #: task_manager/templates/tasks/tasks.html:14
 #: task_manager/templates/users/users.html:11
 msgid "Creation date"
 msgstr "Дата создания"
 
 #: task_manager/templates/statuses/statuses.html:23
+#: task_manager/templates/tasks/task.html:39
 #: task_manager/templates/tasks/tasks.html:29
 #: task_manager/templates/users/users.html:24
 msgid "Edit"
 msgstr "Изменить"
 
 #: task_manager/templates/statuses/statuses.html:25
+#: task_manager/templates/tasks/task.html:41
 #: task_manager/templates/tasks/tasks.html:31
 #: task_manager/templates/users/users.html:26
 msgid "Delete"
 msgstr "Удалить"
+
+#: task_manager/templates/tasks/task.html:4
+msgid "Task view"
+msgstr "Просмотр задачи"
+
+#: task_manager/templates/tasks/task.html:14
+#: task_manager/templates/tasks/tasks.html:12
+msgid "Author"
+msgstr "Автор"
+
+#: task_manager/templates/tasks/task.html:18
+#: task_manager/templates/tasks/tasks.html:13
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: task_manager/templates/tasks/task.html:22
+#: task_manager/templates/tasks/tasks.html:11 tasks/models.py:26
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/templates/tasks/task.html:31 tasks/models.py:43
+msgid "Tag"
+msgstr "Метки"
 
 #: task_manager/templates/tasks/task_create.html:4
 #: task_manager/templates/tasks/tasks.html:5
@@ -151,18 +177,6 @@ msgstr "Удаление задачи"
 #: task_manager/templates/tasks/task_update.html:4
 msgid "Update task"
 msgstr "Изменение задачи"
-
-#: task_manager/templates/tasks/tasks.html:11 tasks/models.py:26
-msgid "Status"
-msgstr "Статус"
-
-#: task_manager/templates/tasks/tasks.html:12
-msgid "Author"
-msgstr "Автор"
-
-#: task_manager/templates/tasks/tasks.html:13
-msgid "Executor"
-msgstr "Исполнитель"
 
 #: task_manager/templates/users/user_create.html:5
 msgid "User update"
@@ -216,23 +230,19 @@ msgstr "Исполнитель"
 msgid "tag"
 msgstr "Метки"
 
-#: tasks/models.py:43
-msgid "Tag"
-msgstr "Метки"
-
-#: tasks/views.py:46
+#: tasks/views.py:58
 msgid "task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:75
+#: tasks/views.py:87
 msgid "task successfully changed"
 msgstr "Задача успешно изменёна"
 
-#: tasks/views.py:95
+#: tasks/views.py:107
 msgid "Only author can delete task"
 msgstr "Задачу может удалить только её автор"
 
-#: tasks/views.py:104
+#: tasks/views.py:116
 msgid "task successfully deleted"
 msgstr "Задача успешно удалёна"
 

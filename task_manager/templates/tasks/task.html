@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load bootstrap4 i18n %}
+{% block content %}
+<h1 class="my-4"> {% trans 'Task view' %} </h1>
+<div class="card">
+    <div class="card-header bg-secondary text-white">
+        <h2>{{ task.name }}</h2>
+    </div>
+    <div class="card-body bg-light">
+        <p>{{ task.description }}</p>
+        <hr>
+        <div class="container">
+            <div class="row p-1">
+                <div class="col">{% trans 'Author' %}</div>
+                <div class="col">{{ task.author.username }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">{% trans 'Executor' %}</div>
+                <div class="col">{{ task.user.username }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">{% trans 'Status' %}</div>
+                <div class="col">{{ task.status.name }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">{% trans 'Creation date' %}</div>
+                <div class="col">{{ task.creation_date }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    <h6>{% trans 'Tag' %}</h6>
+                    <ul>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    <a href="{% url 'tasks:upd_tasks' task.id %}">{% trans 'Edit' %}</a>
+                    <br>
+                    <a href="{% url 'tasks:del_tasks' task.id %}">{% trans 'Delete' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
