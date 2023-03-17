@@ -48,4 +48,4 @@ class Task(models.Model):
         verbose_name = 'Task'
 
     def __str__(self):
-        return f'Status: {self.name}'
+        return {self.name}

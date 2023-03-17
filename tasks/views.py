@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from tasks.models import Task
 from tasks.forms import TaskCreationForm
+from labels.models import Label
 
 
 class TasksView(LoginRequiredMixin, View):
