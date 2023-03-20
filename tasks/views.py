@@ -56,6 +56,7 @@ class TaskCreateView(LoginRequiredMixin, View):
             task = form.save(commit=False)
             task.author = request.user
             task.save()
+            form.save_m2m()
             messages.success(request, _('task successfully created'))
             return HttpResponseRedirect(reverse_lazy('tasks:index'))
         context = {'form': form}

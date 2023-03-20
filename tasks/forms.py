@@ -1,9 +1,13 @@
 """Django forms module."""
-from django.forms import ModelForm, ModelMultipleChoiceField
+from django.forms import (
+    ModelForm,
+    ModelMultipleChoiceField,
+    SelectMultiple,
+)
 from django.utils.translation import gettext_lazy as _
 
 from tasks.models import Task
-from statuses.models import Status
+from labels.models import Label
 
 
 class TaskCreationForm(ModelForm):
@@ -12,9 +16,3 @@ class TaskCreationForm(ModelForm):
         """Base settings"""
         model = Task
         fields = ['name', 'description', 'status', 'user', 'label']
-
-    # tag = ModelMultipleChoiceField(
-    #     label=_('Tag'),
-    #     queryset=Status.objects.all(),
-    #     required=False,
-    # )

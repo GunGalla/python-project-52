@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.db.models import ProtectedError
 
 from labels.models import Label
 from labels.forms import LabelCreationForm
@@ -93,6 +94,11 @@ class LabelDeleteView(LoginRequiredMixin, View):
         """Delete label"""
         label_id = kwargs.get('id')
         label = Label.objects.get(id=label_id)
-        label.delete()
-        messages.success(request, _('Label successfully deleted'))
-        return HttpResponseRedirect(reverse_lazy('labels:index'))
+
+        try:
+            label.delete()
+            messages.success(request, _('Label successfully deleted'))
+            return HttpResponseRedirect(reverse_lazy('labels:index'))
+        except ProtectedError:
+            messages.error(request, _('Label has related objects, cannot delete.'))
+            return HttpResponseRedirect(reverse_lazy('labels:index'))

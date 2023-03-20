@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 15:22+0000\n"
+"POT-Creation-Date: 2023-03-20 08:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,29 +28,37 @@ msgstr ""
 msgid "Name"
 msgstr "Имя"
 
-#: labels/views.py:44
+#: labels/views.py:45
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: labels/views.py:73
+#: labels/views.py:74
 msgid "Label successfully changed"
 msgstr "Метка успешно изменёна"
 
-#: labels/views.py:97
+#: labels/views.py:100
 msgid "Label successfully deleted"
 msgstr "Метка успешно удалёна"
 
-#: statuses/views.py:44
+#: labels/views.py:103
+msgid "Label has related objects, cannot delete."
+msgstr "Невозможно удалить метку, потому что она используется"
+
+#: statuses/views.py:45
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: statuses/views.py:73
+#: statuses/views.py:74
 msgid "Status successfully changed"
 msgstr "Статус успешно изменён"
 
-#: statuses/views.py:97
+#: statuses/views.py:100
 msgid "Status successfully deleted"
 msgstr "Статус успешно удалён"
+
+#: statuses/views.py:103
+msgid "Status has related objects, cannot delete."
+msgstr "Невозможно удалить статус, потому что он используется"
 
 #: task_manager/templates/base.html:8 task_manager/templates/base.html:16
 #: task_manager/templates/index.html:9
@@ -237,8 +245,9 @@ msgstr "Вы залогинены"
 msgid ""
 "Please enter a correct username and password. Note that both fields may be "
 "case-sensitive."
-msgstr "Пожалуйста, введите правильные имя пользователя и пароль. "
-"Оба поля могут быть чувствительны к регистру."
+msgstr ""
+"Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут "
+"быть чувствительны к регистру."
 
 #: task_manager/views.py:62
 msgid "You logged out"
@@ -272,19 +281,19 @@ msgstr "метка"
 msgid "Label"
 msgstr "Метка"
 
-#: tasks/views.py:59
+#: tasks/views.py:60
 msgid "task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:88
+#: tasks/views.py:89
 msgid "task successfully changed"
 msgstr "Задача успешно изменёна"
 
-#: tasks/views.py:108
+#: tasks/views.py:109
 msgid "Only author can delete task"
 msgstr "Задачу может удалить только её автор"
 
-#: tasks/views.py:117
+#: tasks/views.py:118
 msgid "task successfully deleted"
 msgstr "Задача успешно удалёна"
 
@@ -327,25 +336,29 @@ msgid "Password is too short. It must contain at least 3 symbols."
 msgstr ""
 "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
 
-#: users/views.py:39
+#: users/views.py:40
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: users/views.py:56 users/views.py:95
+#: users/views.py:57 users/views.py:96
 msgid "You are not authorized! Please, complete log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: users/views.py:66 users/views.py:103
+#: users/views.py:67 users/views.py:104
 msgid "You have no permission to change other users"
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: users/views.py:78
+#: users/views.py:79
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменён"
 
-#: users/views.py:112
+#: users/views.py:114
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удалён"
+
+#: users/views.py:117
+msgid "User has related objects, cannot delete."
+msgstr "Невозможно удалить пользователя, потому что он используется"
 
 #~ msgid "Tags"
 #~ msgstr "Метки"

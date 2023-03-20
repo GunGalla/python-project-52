@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.db.models import ProtectedError
 
 from statuses.models import Status
 from statuses.forms import StatusCreationForm
@@ -93,6 +94,11 @@ class StatusDelete(LoginRequiredMixin, View):
         """Delete status"""
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
-        status.delete()
-        messages.success(request, _('Status successfully deleted'))
-        return HttpResponseRedirect(reverse_lazy('statuses:index'))
+
+        try:
+            status.delete()
+            messages.success(request, _('Status successfully deleted'))
+            return HttpResponseRedirect(reverse_lazy('statuses:index'))
+        except ProtectedError:
+            messages.error(request, _('Status has related objects, cannot delete.'))
+            return HttpResponseRedirect(reverse_lazy('statuses:index'))

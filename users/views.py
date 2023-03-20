@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from django.db.models import ProtectedError
 
 
 class UsersView(View):
@@ -108,6 +109,10 @@ class UserDelete(View):
         """Delete user"""
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
-        user.delete()
-        messages.success(request, _('User successfully deleted'))
-        return HttpResponseRedirect(reverse_lazy('users:index'))
+        try:
+            user.delete()
+            messages.success(request, _('User successfully deleted'))
+            return HttpResponseRedirect(reverse_lazy('users:index'))
+        except ProtectedError:
+            messages.error(request, _('User has related objects, cannot delete.'))
+            return HttpResponseRedirect(reverse_lazy('users:index'))
