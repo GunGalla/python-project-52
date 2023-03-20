@@ -100,5 +100,7 @@ class LabelDeleteView(LoginRequiredMixin, View):
             messages.success(request, _('Label successfully deleted'))
             return HttpResponseRedirect(reverse_lazy('labels:index'))
         except ProtectedError:
-            messages.error(request, _('Label has related objects, cannot delete.'))
+            messages.error(request, _(
+                'Label has related objects, cannot delete.'
+            ))
             return HttpResponseRedirect(reverse_lazy('labels:index'))

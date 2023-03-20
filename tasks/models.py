@@ -39,6 +39,7 @@ class Task(models.Model):
         to=Label,
         related_name=_('label'),
         verbose_name=_('Label'),
+        blank=True,
     )
 
     creation_date = models.DateTimeField(auto_now=True)

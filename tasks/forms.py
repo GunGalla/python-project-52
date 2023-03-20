@@ -6,6 +6,7 @@ from tasks.models import Task
 
 class TaskCreationForm(ModelForm):
     """Class to create form for user creation."""
+
     class Meta:
         """Base settings"""
         model = Task

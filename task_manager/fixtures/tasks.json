@@ -1,0 +1,38 @@
+[  
+  {
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "name": "Task 1",
+      "description": "",
+      "status": 1,
+      "creation_date": "2023-03-20T18:31:13.998Z",
+      "label": []
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+      "author": 1,
+      "name": "Task 2",
+      "description": "",
+      "status": 1,
+      "creation_date": "2023-03-20T18:31:13.998Z",
+      "label": []
+    }
+  },
+  {
+    "model": "tasks.Task",
+    "pk": 3,
+    "fields": {
+      "author": 2,
+      "name": "Task 3",
+      "description": "",
+      "status": 1,
+      "creation_date": "2023-03-20T18:31:13.998Z",
+      "label": []
+    }
+  }
+]
