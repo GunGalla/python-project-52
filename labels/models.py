@@ -14,4 +14,4 @@ class Label(models.Model):
         verbose_name = 'Label'
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'

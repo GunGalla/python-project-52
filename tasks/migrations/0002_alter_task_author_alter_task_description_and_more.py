@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('statuses', '0003_alter_status_name'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
@@ -17,26 +16,54 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='author', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='author',
+                to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AlterField(
             model_name='task',
             name='description',
-            field=models.TextField(blank=True, max_length=5000, null=True, verbose_name='Description'),
+            field=models.TextField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name='Description'
+            ),
         ),
         migrations.AlterField(
             model_name='task',
             name='status',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='status', to='statuses.status', verbose_name='Status'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='status',
+                to='statuses.status',
+                verbose_name='Status'
+            ),
         ),
         migrations.AlterField(
             model_name='task',
             name='tag',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='tag', to='statuses.status', verbose_name='Tag'),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='tag',
+                to='statuses.status',
+                verbose_name='Tag'
+            ),
         ),
         migrations.AlterField(
             model_name='task',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='executor', to=settings.AUTH_USER_MODEL, verbose_name='User'),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='executor',
+                to=settings.AUTH_USER_MODEL,
+                verbose_name='User'
+            ),
         ),
     ]

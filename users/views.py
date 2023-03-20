@@ -114,5 +114,7 @@ class UserDelete(View):
             messages.success(request, _('User successfully deleted'))
             return HttpResponseRedirect(reverse_lazy('users:index'))
         except ProtectedError:
-            messages.error(request, _('User has related objects, cannot delete.'))
+            messages.error(request, _(
+                'User has related objects, cannot delete.'
+            ))
             return HttpResponseRedirect(reverse_lazy('users:index'))

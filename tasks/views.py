@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from tasks.models import Task
 from tasks.forms import TaskCreationForm
-from labels.models import Label
+from .filter import TaskFilter
 
 
 class TasksView(LoginRequiredMixin, View):
@@ -18,11 +18,30 @@ class TasksView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         """Getting all registered tasks"""
         tasks = Task.objects.all()
-        context = {'tasks': tasks}
+        f = TaskFilter(request.GET, tasks)
+
+        status = request.GET.get('status')
+        label = request.GET.get('label')
+        user = request.GET.get('user')
+        author = request.GET.get('author')
+
+        if status:
+            tasks = tasks.filter(status__id=status)
+
+        if label:
+            tasks = tasks.filter(label__id=label)
+
+        if user:
+            tasks = tasks.filter(user__id=user)
+
+        if author:
+            tasks = tasks.filter(author__id=request.user.id)
+
+        context = {'tasks': tasks, 'filter': f}
         if tasks:
             return render(request, 'tasks/tasks.html', context)
         else:
-            return render(request, 'tasks/tasks.html')
+            return render(request, 'tasks/tasks.html', context={'filter': f})
 
 
 class TaskView(LoginRequiredMixin, View):

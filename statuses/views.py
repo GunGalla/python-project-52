@@ -100,5 +100,7 @@ class StatusDelete(LoginRequiredMixin, View):
             messages.success(request, _('Status successfully deleted'))
             return HttpResponseRedirect(reverse_lazy('statuses:index'))
         except ProtectedError:
-            messages.error(request, _('Status has related objects, cannot delete.'))
+            messages.error(request, _(
+                'Status has related objects, cannot delete.'
+            ))
             return HttpResponseRedirect(reverse_lazy('statuses:index'))

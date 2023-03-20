@@ -44,8 +44,8 @@ class Task(models.Model):
     creation_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        """Defines verbose names for Status objects"""
+        """Defines verbose names for Task objects"""
         verbose_name = 'Task'
 
     def __str__(self):
-        return {self.name}
+        return f'{self.name}'

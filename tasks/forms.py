@@ -1,13 +1,7 @@
 """Django forms module."""
-from django.forms import (
-    ModelForm,
-    ModelMultipleChoiceField,
-    SelectMultiple,
-)
-from django.utils.translation import gettext_lazy as _
+from django.forms import ModelForm
 
 from tasks.models import Task
-from labels.models import Label
 
 
 class TaskCreationForm(ModelForm):
