@@ -61,7 +61,7 @@ class UserUpdate(View):
         if request.user.id == user.id:
             form = UserRegistrationForm(instance=user)
             context = {'form': form, 'user_id': user_id}
-            return render(request, 'users/user_create.html', context)
+            return render(request, 'users/user_update.html', context)
 
         messages.error(
             request, _('You have no permission to change other users')
@@ -79,7 +79,7 @@ class UserUpdate(View):
             messages.success(request, _('User successfully changed'))
             return HttpResponseRedirect(reverse_lazy('users:index'))
         context = {'form': form}
-        return render(request, 'users/user_create.html', context)
+        return render(request, 'users/user_update.html', context)
 
 
 class UserDelete(View):
