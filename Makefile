@@ -2,7 +2,7 @@ install:
 	poetry install
 
 test:
-	poetry run pytest
+	poetry run python manage.py test
 
 build:
 	poetry build
@@ -19,7 +19,7 @@ lint:
 selfcheck:
 	poetry check
 
-check: selfcheck lint
+check: selfcheck lint test
 
 dev:
 	poetry run python manage.py runserver
