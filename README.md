@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/GunGalla/python-project-52/workflows/hexlet-check/badge.svg)](https://github.com/GunGalla/python-project-52/actions)
 [![Actions Status](https://github.com/GunGalla/python-project-52/workflows/Python%20CI/badge.svg)](https://github.com/GunGalla/python-project-52/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec1c7475cadc36aa69ff/maintainability)](https://codeclimate.com/github/GunGalla/python-project-52/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ec1c7475cadc36aa69ff/test_coverage)](https://codeclimate.com/github/GunGalla/python-project-52/test_coverage)
 
 You can check the project on this site:
 - https://hexlet-task-manager.up.railway.app/
