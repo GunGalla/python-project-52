@@ -65,5 +65,6 @@ class Logout(View):
 
 def index(request):
     a = None
-    a.hello() # Creating an error with an invalid line of code
+    a.hello()  # Creating an error with an invalid line of code
+    dsadfasf
     return HttpResponse("Hello, world. You're at the pollapp index.")
