@@ -1,3 +1,5 @@
+"""Admin setup module for labels app"""
 from django.contrib import admin
+from .models import Label
 
-# Register your models here.
+admin.site.register(Label)
