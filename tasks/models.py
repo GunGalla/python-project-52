@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from statuses.models import Status
 from labels.models import Label
@@ -42,7 +43,7 @@ class Task(models.Model):
         blank=True,
     )
 
-    creation_date = models.DateTimeField(auto_now=True)
+    creation_date = models.DateTimeField(default=timezone.now)
 
     class Meta:
         """Defines verbose names for Task objects"""

@@ -3,24 +3,21 @@
     "model": "labels.label",
     "pk": 1,
     "fields": {
-      "name": "Test label 1",
-      "creation_date": "2023-03-17T13:00:14.733Z"
+      "name": "Test label 1"
     }
   },
   {
     "model": "labels.label",
     "pk": 2,
     "fields": {
-      "name": "Test label 2",
-      "creation_date": "2023-03-17T13:00:14.733Z"
+      "name": "Test label 2"
     }
   },
   {
     "model": "labels.label",
     "pk": 3,
     "fields": {
-      "name": "Test label 3",
-      "creation_date": "2023-03-17T13:00:14.733Z"
+      "name": "Test label 3"
     }
   }
 ]
