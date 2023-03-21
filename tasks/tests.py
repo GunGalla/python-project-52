@@ -2,9 +2,10 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from http import HTTPStatus
+
 from tasks.models import Task
 from statuses.models import Status
-from http import HTTPStatus
 
 
 class SetUpTests(TestCase):
