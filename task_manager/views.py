@@ -7,6 +7,7 @@ from django.views import View
 from django.utils.translation import gettext_lazy as _
 
 from .forms import UserLoginForm
+from .settings import BASE_DIR, LOCALE_PATHS
 
 
 class IndexView(View):
@@ -14,6 +15,8 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         """Home page"""
+        print(BASE_DIR)
+        print(LOCALE_PATHS)
         return render(request, 'index.html')
 
     def post(self, request, *args, **kwargs):
