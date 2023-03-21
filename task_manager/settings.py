@@ -141,6 +141,8 @@ LANGUAGES = [
     ('ru', 'Russian'),
 ]
 
+LOCALE_URL = BASE_DIR / 'locale/'
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
