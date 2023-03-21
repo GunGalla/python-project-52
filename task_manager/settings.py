@@ -61,8 +61,9 @@ INSTALLED_APPS = [
 ]
 
 ROLLBAR = {
-    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
+    'access_token': 'a514aa5deac64f1fbc57fa9473682511',
     'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
     'root': BASE_DIR,
 }
 rollbar.init(**ROLLBAR)
