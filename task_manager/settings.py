@@ -142,9 +142,9 @@ LANGUAGES = [
     ('ru', 'Russian'),
 ]
 
+LOCALE_URL = "locale/"
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
-    os.path.join(BASE_DIR, 'locale/ru/LC_MESSAGES')
 ]
 
 
