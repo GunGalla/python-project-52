@@ -1,5 +1,5 @@
 """Views module"""
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
@@ -61,3 +61,9 @@ class Logout(View):
         logout(request)
         messages.info(request, _('You logged out'))
         return HttpResponseRedirect(reverse_lazy('index'))
+
+
+def index(request):
+    a = None
+    a.hello() # Creating an error with an invalid line of code
+    return HttpResponse("Hello, world. You're at the pollapp index.")
