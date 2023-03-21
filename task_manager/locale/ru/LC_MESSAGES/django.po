@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-20 13:51+0000\n"
+"POT-Creation-Date: 2023-03-21 21:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr "Метка успешно изменёна"
 msgid "Label successfully deleted"
 msgstr "Метка успешно удалёна"
 
-#: labels/views.py:103
+#: labels/views.py:104
 msgid "Label has related objects, cannot delete."
 msgstr "Невозможно удалить метку, потому что она используется"
 
@@ -56,7 +56,7 @@ msgstr "Статус успешно изменён"
 msgid "Status successfully deleted"
 msgstr "Статус успешно удалён"
 
-#: statuses/views.py:103
+#: statuses/views.py:104
 msgid "Status has related objects, cannot delete."
 msgstr "Невозможно удалить статус, потому что он используется"
 
@@ -91,7 +91,6 @@ msgid "Log out"
 msgstr "Выход"
 
 #: task_manager/templates/base.html:47 task_manager/templates/login.html:4
-#: task_manager/templates/login.html:8
 msgid "Log in"
 msgstr "Вход"
 
@@ -171,6 +170,10 @@ msgstr "Изменить"
 #: task_manager/templates/users/users.html:26
 msgid "Delete"
 msgstr "Удалить"
+
+#: task_manager/templates/login.html:8
+msgid "Enter"
+msgstr "Войти"
 
 #: task_manager/templates/statuses/status_create.html:4
 #: task_manager/templates/statuses/statuses.html:5
@@ -289,21 +292,21 @@ msgstr "метка"
 msgid "Label"
 msgstr "Метка"
 
-#: tasks/views.py:81
+#: tasks/views.py:79
 msgid "task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:110
+#: tasks/views.py:108
 msgid "task successfully changed"
-msgstr "Задача успешно изменёна"
+msgstr "Задача успешно изменeна"
 
-#: tasks/views.py:130
+#: tasks/views.py:128
 msgid "Only author can delete task"
 msgstr "Задачу может удалить только её автор"
 
-#: tasks/views.py:139
+#: tasks/views.py:137
 msgid "task successfully deleted"
-msgstr "Задача успешно удалёна"
+msgstr "Задача успешно удалeна"
 
 #: users/forms.py:23
 msgid "Surname"
@@ -364,7 +367,7 @@ msgstr "Пользователь успешно изменён"
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удалён"
 
-#: users/views.py:117
+#: users/views.py:118
 msgid "User has related objects, cannot delete."
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
