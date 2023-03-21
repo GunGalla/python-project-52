@@ -1,5 +1,5 @@
 """Views module"""
-from django.shortcuts import render, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
@@ -14,8 +14,6 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         """Home page"""
-        a = None
-        a.hello()
         return render(request, 'index.html')
 
     def post(self, request, *args, **kwargs):

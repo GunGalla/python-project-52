@@ -21,7 +21,7 @@ import os
 load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -61,12 +61,11 @@ INSTALLED_APPS = [
 ]
 
 ROLLBAR = {
-    'access_token': 'a514aa5deac64f1fbc57fa9473682511',
+    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
 }
-rollbar.init(**ROLLBAR)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
