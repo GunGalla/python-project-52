@@ -14,6 +14,8 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         """Home page"""
+        a = None
+        a.hello()
         return render(request, 'index.html')
 
     def post(self, request, *args, **kwargs):
@@ -61,10 +63,3 @@ class Logout(View):
         logout(request)
         messages.info(request, _('You logged out'))
         return HttpResponseRedirect(reverse_lazy('index'))
-
-
-def index(request):
-    a = None
-    a.hello()  # Creating an error with an invalid line of code
-    dsadfasf
-    return HttpResponse("Hello, world. You're at the pollapp index.")
