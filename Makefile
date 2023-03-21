@@ -51,4 +51,4 @@ shell:
 	python manage.py shell_plus --ipython
 
 test-coverage:
-	poetry run coverage run manage.py test -v 2 && coverage report xml
+	poetry run coverage run manage.py test -v 2 && coverage report > result.xml
