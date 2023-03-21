@@ -34,9 +34,7 @@ DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'hexlet-task-manager.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://hexlet-task-manager.up.railway.app/'
-]
+CSRF_TRUSTED_ORIGINS = ['https://hexlet-task-manager.up.railway.app']
 
 # Application definition
 
