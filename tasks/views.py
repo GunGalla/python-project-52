@@ -134,5 +134,5 @@ class TaskDeleteView(LoginRequiredMixin, View):
         task_id = kwargs.get('id')
         task = Task.objects.get(id=task_id)
         task.delete()
-        messages.success(request, 'Задача уcпешно удалена')
+        messages.success(request, 'Задача успешно удалена')
         return HttpResponseRedirect(reverse_lazy('tasks:index'))
