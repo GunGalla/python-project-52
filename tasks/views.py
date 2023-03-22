@@ -105,7 +105,7 @@ class TaskUpdateView(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Задача успешно изменена')
+            messages.success(request, _('Task successfully changed'))
             return HttpResponseRedirect(reverse_lazy('tasks:index'))
         context = {'form': form}
         return render(request, 'tasks/task_update.html', context)
@@ -134,5 +134,5 @@ class TaskDeleteView(LoginRequiredMixin, View):
         task_id = kwargs.get('id')
         task = Task.objects.get(id=task_id)
         task.delete()
-        messages.success(request, 'Задача успешно удалена')
+        messages.success(request, _('Task successfully deleted'))
         return HttpResponseRedirect(reverse_lazy('tasks:index'))

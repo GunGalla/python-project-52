@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-22 08:47+0000\n"
+"POT-Creation-Date: 2023-03-22 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: statuses/models.py:10 task_manager/templates/labels/labels.html:10
 #: task_manager/templates/statuses/statuses.html:10
 #: task_manager/templates/tasks/tasks.html:20 tasks/models.py:18
-#: users/forms.py:21
+#: users/forms.py:22
 msgid "Name"
 msgstr "Имя"
 
@@ -198,7 +198,7 @@ msgid "Author"
 msgstr "Автор"
 
 #: task_manager/templates/tasks/task.html:18
-#: task_manager/templates/tasks/tasks.html:23
+#: task_manager/templates/tasks/tasks.html:23 tasks/models.py:36
 msgid "Executor"
 msgstr "Исполнитель"
 
@@ -236,7 +236,7 @@ msgstr "Удаление пользователя"
 msgid "User update"
 msgstr "Изменение пользователя"
 
-#: task_manager/templates/users/users.html:9 users/forms.py:26
+#: task_manager/templates/users/users.html:9 users/forms.py:27
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -244,11 +244,11 @@ msgstr "Имя пользователя"
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/views.py:44
+#: task_manager/tests.py:57 task_manager/views.py:44
 msgid "You logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:50
+#: task_manager/tests.py:73 task_manager/views.py:50
 msgid ""
 "Please enter a correct username and password. Note that both fields may be "
 "case-sensitive."
@@ -284,10 +284,6 @@ msgstr "Статус"
 msgid "executor"
 msgstr "Исполнитель"
 
-#: tasks/models.py:36
-msgid "User"
-msgstr "Исполнитель"
-
 #: tasks/models.py:41
 msgid "label"
 msgstr "метки"
@@ -297,7 +293,7 @@ msgid "task successfully created"
 msgstr "Задача успешно создана"
 
 #: tasks/views.py:108
-msgid "task successfully changed"
+msgid "Task successfully changed"
 msgstr "Задача успешно изменeна"
 
 #: tasks/views.py:128
@@ -305,14 +301,14 @@ msgid "Only author can delete task"
 msgstr "Задачу может удалить только её автор"
 
 #: tasks/views.py:137
-msgid "task successfully deleted"
+msgid "Task successfully deleted"
 msgstr "Задача успешно удалeна"
 
-#: users/forms.py:23
+#: users/forms.py:24
 msgid "Surname"
 msgstr "Фамилия"
 
-#: users/forms.py:27
+#: users/forms.py:28
 msgid ""
 "Required field. 150 symbols max. It can contain only letters, digits and "
 "symbols @/./+/-/_."
@@ -320,75 +316,51 @@ msgstr ""
 "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
 "+/-/_."
 
-#: users/forms.py:34
-#, fuzzy
-#| msgid "password"
+#: users/forms.py:35
 msgid "Password"
 msgstr "Пароль"
 
-#: users/forms.py:36
+#: users/forms.py:37
 msgid "<ul><li>Your password must contain at least 3 symbols.</li></ul>"
 msgstr "<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>"
 
-#: users/forms.py:41
+#: users/forms.py:42
 msgid "Password confirm"
 msgstr "Подтверждение пароля"
 
-#: users/forms.py:43
+#: users/forms.py:44
 msgid "Please, enter password again for confirmation."
 msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
 
-#: users/forms.py:51
+#: users/forms.py:52
 msgid "Passwords do not match"
 msgstr "Введенные пароли не совпадают"
 
-#: users/forms.py:53
+#: users/forms.py:54
 msgid "Password is too short. It must contain at least 3 symbols."
 msgstr ""
 "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
 
-#: users/views.py:40
+#: users/views.py:41
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: users/views.py:57 users/views.py:96
+#: users/views.py:58 users/views.py:97
 msgid "You are not authorized! Please, complete log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: users/views.py:67 users/views.py:104
+#: users/views.py:68 users/views.py:105
 msgid "You have no permission to change other users"
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: users/views.py:79
+#: users/views.py:80
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменён"
 
-#: users/views.py:114
+#: users/views.py:115
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удалён"
 
-#: users/views.py:118
+#: users/views.py:119
 msgid "User has related objects, cannot delete."
 msgstr "Невозможно удалить пользователя, потому что он используется"
-
-#~ msgid "Tags"
-#~ msgstr "Метки"
-
-#~ msgid "Tag"
-#~ msgstr "Метки"
-
-#~ msgid "tag"
-#~ msgstr "Метки"
-
-#~ msgid "Task status with that Name already exists"
-#~ msgstr "Task status с таким Имя уже существует."
-
-#~ msgid ""
-#~ "Enter correct username. It can contain only letters, digits and symbols "
-#~ "@/./+/-/_"
-#~ msgstr ""
-#~ "Введите правильное имя пользователя. Оно может содержать только буквы, "
-#~ "цифры и знаки @/./+/-/_."
-
-#~ msgid "User with that username already exists"
-#~ msgstr "Пользователь с таким именем уже существует."
