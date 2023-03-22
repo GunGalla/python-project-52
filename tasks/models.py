@@ -28,12 +28,12 @@ class Task(models.Model):
         verbose_name=_('Status')
     )
 
-    user = models.ForeignKey(
+    executor = models.ForeignKey(
         to=User,
         on_delete=models.PROTECT,
         null=True, blank=True,
         related_name=_('executor'),
-        verbose_name=_('User')
+        verbose_name=_('Executor')
     )
 
     label = models.ManyToManyField(

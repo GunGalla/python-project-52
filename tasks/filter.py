@@ -19,14 +19,7 @@ class TaskFilter(FilterSet):
         label=_('Only my tasks'),
     )
 
-    user = ModelChoiceFilter(
-        queryset=User.objects.all(),
-        label=_('User'),
-        to_field_name='id',
-
-    )
-
     class Meta:
         """Base fields"""
         model = Task
-        fields = ['status', 'user', 'label']
+        fields = ['status', 'executor', 'label']
