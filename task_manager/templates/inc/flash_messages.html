@@ -1,10 +1,12 @@
 {% for msg in messages %}
     {% if msg.tags == 'success' %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                ×
-            </button>
-            {{ msg }}
+        <div class="alert">
+            <div class="alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    ×
+                </button>
+                {{ msg }}
+            </div>
         </div>
     {% elif msg.tags == 'error' %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
