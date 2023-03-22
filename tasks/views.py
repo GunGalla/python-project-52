@@ -22,7 +22,7 @@ class TasksView(LoginRequiredMixin, View):
 
         status = request.GET.get('status')
         label = request.GET.get('label')
-        user = request.GET.get('user')
+        executor = request.GET.get('executor')
         author = request.GET.get('author')
 
         if status:
@@ -31,8 +31,8 @@ class TasksView(LoginRequiredMixin, View):
         if label:
             tasks = tasks.filter(label__id=label)
 
-        if user:
-            tasks = tasks.filter(user__id=user)
+        if executor:
+            tasks = tasks.filter(executor__id=executor)
 
         if author:
             tasks = tasks.filter(author__id=request.user.id)
