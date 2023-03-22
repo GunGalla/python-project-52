@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 from tasks.models import Task
 from labels.models import Label
-from users.models import User
 
 
 class TaskFilter(FilterSet):
