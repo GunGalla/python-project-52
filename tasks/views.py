@@ -21,15 +21,15 @@ class TasksView(LoginRequiredMixin, View):
         f = TaskFilter(request.GET, tasks)
 
         status = request.GET.get('status')
-        label = request.GET.get('label')
+        labels = request.GET.get('labels')
         executor = request.GET.get('executor')
         author = request.GET.get('author')
 
         if status:
             tasks = tasks.filter(status__id=status)
 
-        if label:
-            tasks = tasks.filter(label__id=label)
+        if labels:
+            tasks = tasks.filter(labels__id=labels)
 
         if executor:
             tasks = tasks.filter(executor__id=executor)
