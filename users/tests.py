@@ -1,8 +1,9 @@
 """Tasks test module"""
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from http import HTTPStatus
+
+from users.models import User
 
 
 class SetUpTests(TestCase):

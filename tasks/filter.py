@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from tasks.models import Task
 from labels.models import Label
+from users.models import User
 
 
 class TaskFilter(FilterSet):
@@ -16,6 +17,13 @@ class TaskFilter(FilterSet):
     author = BooleanFilter(
         widget=CheckboxInput,
         label=_('Only my tasks'),
+    )
+
+    user = ModelChoiceFilter(
+        queryset=User.objects.all(),
+        label=_('User'),
+        to_field_name='id',
+
     )
 
     class Meta:

@@ -1,10 +1,11 @@
 """Tasks test module"""
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from http import HTTPStatus
 from django.contrib.messages import get_messages
 from django.utils.translation import gettext_lazy as _
+
+from users.models import User
 
 
 class SetUpTests(TestCase):
@@ -70,7 +71,7 @@ class LoginViewTestCase(SetUpTests):
         self.assertEqual(
             str(messages[0]),
             _('Please enter a correct username and password. '
-            'Note that both fields may be case-sensitive.')
+                'Note that both fields may be case-sensitive.'),
         )
 
 
