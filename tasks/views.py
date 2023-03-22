@@ -105,7 +105,7 @@ class TaskUpdateView(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
-            messages.success(request, _('task successfully changed'))
+            messages.success(request, 'Задача успешно изменена')
             return HttpResponseRedirect(reverse_lazy('tasks:index'))
         context = {'form': form}
         return render(request, 'tasks/task_update.html', context)
