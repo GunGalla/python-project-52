@@ -294,7 +294,7 @@ msgstr "Задача успешно создана"
 
 #: tasks/views.py:108
 msgid "Task successfully changed"
-msgstr "Задача успешно изменeна"
+msgstr "Задача успешно изменена"
 
 #: tasks/views.py:128
 msgid "Only author can delete task"
@@ -302,7 +302,7 @@ msgstr "Задачу может удалить только её автор"
 
 #: tasks/views.py:137
 msgid "Task successfully deleted"
-msgstr "Задача успешно удалeна"
+msgstr "Задача успешно удалена"
 
 #: users/forms.py:24
 msgid "Surname"
