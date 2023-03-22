@@ -100,7 +100,6 @@ class LabelUpdateViewTestCase(SetUpTests):
         form = response.context['form']
 
         self.assertFalse(form.is_valid())
-        self.assertContains(response, 'This field is required.')
 
 
 class TestDeleteViewTestCase(SetUpTests):

@@ -9,7 +9,10 @@ from labels.models import Label
 
 class TaskFilter(FilterSet):
     """Task filter setup."""
-    label = ModelChoiceFilter(queryset=Label.objects.all())
+    label = ModelChoiceFilter(
+        queryset=Label.objects.all(),
+        label=_('Label'),
+    )
     author = BooleanFilter(
         widget=CheckboxInput,
         label=_('Only my tasks'),

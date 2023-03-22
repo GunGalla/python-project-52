@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from http import HTTPStatus
 from django.contrib.messages import get_messages
+from django.utils.translation import gettext_lazy as _
 
 
 class SetUpTests(TestCase):
@@ -52,7 +53,7 @@ class LoginViewTestCase(SetUpTests):
         self.assertIn('_auth_user_id', self.client.session)
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'You logged in')
+        self.assertEqual(str(messages[0]), _('You logged in'))
 
     def test_post_with_invalid_credentials(self):
         """Test login failure"""
@@ -68,8 +69,8 @@ class LoginViewTestCase(SetUpTests):
         self.assertEqual(len(messages), 1)
         self.assertEqual(
             str(messages[0]),
-            'Please enter a correct username and password. '
-            'Note that both fields may be case-sensitive.'
+            _('Please enter a correct username and password. '
+            'Note that both fields may be case-sensitive.')
         )
 
 

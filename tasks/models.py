@@ -39,7 +39,7 @@ class Task(models.Model):
     label = models.ManyToManyField(
         to=Label,
         related_name=_('label'),
-        verbose_name=_('Label'),
+        verbose_name=_('Labels'),
         blank=True,
     )
 
