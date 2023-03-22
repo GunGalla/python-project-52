@@ -10,4 +10,4 @@ class TaskCreationForm(ModelForm):
     class Meta:
         """Base settings"""
         model = Task
-        fields = ['name', 'description', 'status', 'executor', 'label']
+        fields = ['name', 'description', 'status', 'executor', 'labels']

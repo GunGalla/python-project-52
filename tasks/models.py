@@ -36,7 +36,7 @@ class Task(models.Model):
         verbose_name=_('Executor')
     )
 
-    label = models.ManyToManyField(
+    labels = models.ManyToManyField(
         to=Label,
         related_name=_('label'),
         verbose_name=_('Labels'),

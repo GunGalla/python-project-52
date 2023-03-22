@@ -9,7 +9,7 @@ from labels.models import Label
 
 class TaskFilter(FilterSet):
     """Task filter setup."""
-    label = ModelChoiceFilter(
+    labels = ModelChoiceFilter(
         queryset=Label.objects.all(),
         label=_('Label'),
     )
@@ -21,4 +21,4 @@ class TaskFilter(FilterSet):
     class Meta:
         """Base fields"""
         model = Task
-        fields = ['status', 'executor', 'label']
+        fields = ['status', 'executor', 'labels']
