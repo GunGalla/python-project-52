@@ -286,11 +286,11 @@ msgstr "Исполнитель"
 
 #: tasks/models.py:40
 msgid "label"
-msgstr "метка"
+msgstr "метки"
 
 #: tasks/models.py:41
 msgid "Label"
-msgstr "Метка"
+msgstr "Метки"
 
 #: tasks/views.py:79
 msgid "task successfully created"
