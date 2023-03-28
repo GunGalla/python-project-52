@@ -16,8 +16,8 @@ class SetUpTests(TestCase):
         self.user2 = User.objects.get(pk=2)
         self.client.force_login(self.user1)
         self.user_creation_url = reverse('users:create')
-        self.url_upd_user = reverse('users:upd_user', kwargs={'id': 1})
-        self.url_del_user = reverse('users:del_user', kwargs={'id': 1})
+        self.url_upd_user = reverse('users:upd_user', kwargs={'pk': 1})
+        self.url_del_user = reverse('users:del_user', kwargs={'pk': 1})
 
 
 class UsersViewTest(SetUpTests):
@@ -132,7 +132,7 @@ class TestDeleteViewTestCase(SetUpTests):
     def test_successful_user_deletion(self):
         """User deletion success test"""
         self.client.force_login(self.user2)
-        response = self.client.post(reverse('users:del_user', kwargs={'id': 2}))
+        response = self.client.post(reverse('users:del_user', kwargs={'pk': 2}))
 
         self.assertRedirects(response, reverse('users:index'))
         self.assertEqual(User.objects.filter(id=self.user2.id).count(), 0)

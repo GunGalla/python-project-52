@@ -54,6 +54,7 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         """Delete label"""
         label_id = kwargs.get('pk')
+        print(label_id)
         label = Label.objects.get(id=label_id)
         if label.tasks.count() > 0:
             messages.error(request, _(
