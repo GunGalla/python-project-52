@@ -1,6 +1,8 @@
 """Statuses app views module"""
 from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
+from django.views.generic import ListView, CreateView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -11,70 +13,35 @@ from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusCreationForm
 
 
-class StatusesView(LoginRequiredMixin, View):
+class StatusesView(LoginRequiredMixin, ListView):
     """Statuses list page"""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Getting all registered statuses"""
-        statuses = Status.objects.all()
-        context = {'statuses': statuses}
-        if statuses:
-            return render(request, 'statuses/statuses.html', context)
-        else:
-            return render(request, 'statuses/statuses.html')
+    model = Status
+    template_name = 'statuses/statuses.html'
+    context_object_name = 'statuses'
 
 
-class StatusCreate(LoginRequiredMixin, View):
+class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """Views, related to statuses creation"""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Shows status creation form"""
-
-        form = StatusCreationForm()
-        context = {'form': form}
-        return render(request, 'statuses/status_create.html', context)
-
-    def post(self, request, *args, **kwargs):
-        """Sends status creation form"""
-
-        form = StatusCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Status successfully created'))
-            return HttpResponseRedirect(reverse_lazy('statuses:index'))
-        context = {'form': form}
-        return render(request, 'statuses/status_create.html', context)
+    model = Status
+    form_class = StatusCreationForm
+    template_name = 'statuses/status_create.html'
+    success_url = reverse_lazy('statuses:index')
+    success_message = _('Status successfully created')
 
 
-class StatusUpdate(LoginRequiredMixin, View):
+class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """Edit status data."""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Shows status form to further update"""
-
-        status_id = kwargs.get('id')
-        status = Status.objects.get(id=status_id)
-
-        form = StatusCreationForm(instance=status)
-        context = {'form': form, 'status_id': status_id}
-        return render(request, 'statuses/status_update.html', context)
-
-    def post(self, request, *args, **kwargs):
-        """Sends updated status info"""
-
-        status_id = kwargs.get('id')
-        status = Status.objects.get(id=status_id)
-        form = StatusCreationForm(request.POST, instance=status)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Status successfully changed'))
-            return HttpResponseRedirect(reverse_lazy('statuses:index'))
-        context = {'form': form}
-        return render(request, 'statuses/status_update.html', context)
+    model = Status
+    form_class = StatusCreationForm
+    template_name = 'statuses/status_update.html'
+    success_url = reverse_lazy('statuses:index')
+    success_message = _('Status successfully changed')
 
 
 class StatusDelete(LoginRequiredMixin, View):
