@@ -24,7 +24,7 @@ class Task(models.Model):
     status = models.ForeignKey(
         to=Status,
         on_delete=models.PROTECT,
-        related_name=_('status'),
+        related_name='status',
         verbose_name=_('Status')
     )
 
@@ -32,13 +32,13 @@ class Task(models.Model):
         to=User,
         on_delete=models.PROTECT,
         null=True, blank=True,
-        related_name=_('executor'),
+        related_name='executor',
         verbose_name=_('Executor')
     )
 
     labels = models.ManyToManyField(
         to=Label,
-        related_name=_('tasks'),
+        related_name='tasks',
         verbose_name=_('Labels'),
         blank=True,
     )
