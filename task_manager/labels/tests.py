@@ -18,8 +18,8 @@ class SetUpTests(TestCase):
         self.user2 = User.objects.get(pk=2)
         self.client.force_login(self.user1)
         self.label_creation_url = reverse('labels:create')
-        self.url_upd_label = reverse('labels:upd_label', kwargs={'id': 1})
-        self.url_del_label = reverse('labels:del_label', kwargs={'id': 1})
+        self.url_upd_label = reverse('labels:upd_label', kwargs={'pk': 1})
+        self.url_del_label = reverse('labels:del_label', kwargs={'pk': 1})
 
 
 class LabelsViewTest(SetUpTests):
