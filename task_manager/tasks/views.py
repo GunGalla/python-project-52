@@ -1,138 +1,84 @@
 """Tasks app views module"""
-from django.shortcuts import render, HttpResponseRedirect
-from django.views import View
+from django.shortcuts import HttpResponseRedirect
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+from django_filters.views import FilterView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.tasks.models import Task
+from task_manager.users.models import User
 from task_manager.tasks.forms import TaskCreationForm
 from .filter import TaskFilter
 
 
-class TasksView(LoginRequiredMixin, View):
+class TasksView(LoginRequiredMixin, FilterView):
     """tasks list page"""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Getting all registered tasks"""
-        tasks = Task.objects.all()
-        f = TaskFilter(request.GET, tasks)
-
-        status = request.GET.get('status')
-        labels = request.GET.get('labels')
-        executor = request.GET.get('executor')
-        author = request.GET.get('author')
-
-        if status:
-            tasks = tasks.filter(status__id=status)
-
-        if labels:
-            tasks = tasks.filter(labels__id=labels)
-
-        if executor:
-            tasks = tasks.filter(executor__id=executor)
-
-        if author:
-            tasks = tasks.filter(author__id=request.user.id)
-
-        context = {'tasks': tasks, 'filter': f}
-        if tasks:
-            return render(request, 'tasks/tasks.html', context)
-        else:
-            return render(request, 'tasks/tasks.html', context={'filter': f})
+    model = Task
+    template_name = 'tasks/tasks.html'
+    context_object_name = 'tasks'
+    filterset_class = TaskFilter
 
 
-class TaskView(LoginRequiredMixin, View):
+class TaskView(LoginRequiredMixin, DetailView):
     """Current task page"""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Getting distinct task"""
-        task_id = kwargs.get('id')
-        task = Task.objects.get(id=task_id)
-        context = {'task': task}
-        return render(request, 'tasks/task.html', context)
+    model = Task
+    template_name = 'tasks/task.html'
+    context_object_name = 'task'
 
 
-class TaskCreateView(LoginRequiredMixin, View):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """Views, related to task creation"""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Shows task creation form"""
+    model = Task
+    template_name = 'tasks/task_create.html'
+    form_class = TaskCreationForm
+    success_url = reverse_lazy('tasks:index')
+    success_message = _('Task successfully created')
 
-        form = TaskCreationForm()
-        context = {'form': form}
-        return render(request, 'tasks/task_create.html', context)
-
-    def post(self, request, *args, **kwargs):
-        """Sends task creation form"""
-
-        form = TaskCreationForm(request.POST)
-        if form.is_valid():
-            task = form.save(commit=False)
-            task.author = request.user
-            task.save()
-            form.save_m2m()
-            messages.success(request, _('task successfully created'))
-            return HttpResponseRedirect(reverse_lazy('tasks:index'))
-        context = {'form': form}
-        return render(request, 'tasks/task_create.html', context)
+    def form_valid(self, form):
+        """Set author of the task"""
+        user = self.request.user
+        form.instance.author = User.objects.get(pk=user.pk)
+        return super().form_valid(form)
 
 
-class TaskUpdateView(LoginRequiredMixin, View):
+class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """Edit task data."""
     login_url = reverse_lazy('login')
 
-    def get(self, request, *args, **kwargs):
-        """Shows task form to further update"""
-
-        task_id = kwargs.get('id')
-        task = Task.objects.get(id=task_id)
-
-        form = TaskCreationForm(instance=task)
-        context = {'form': form, 'task_id': task_id}
-        return render(request, 'tasks/task_update.html', context)
-
-    def post(self, request, *args, **kwargs):
-        """Sends updated task info"""
-
-        task_id = kwargs.get('id')
-        task = Task.objects.get(id=task_id)
-        form = TaskCreationForm(request.POST, instance=task)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Task successfully changed'))
-            return HttpResponseRedirect(reverse_lazy('tasks:index'))
-        context = {'form': form}
-        return render(request, 'tasks/task_update.html', context)
+    model = Task
+    template_name = 'tasks/task_update.html'
+    form_class = TaskCreationForm
+    success_url = reverse_lazy('tasks:index')
+    success_message = _('Task successfully changed')
 
 
-class TaskDeleteView(LoginRequiredMixin, View):
+class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     """Delete task"""
     login_url = reverse_lazy('login')
+
+    model = Task
+    template_name = 'tasks/task_delete.html'
+    success_url = reverse_lazy('tasks:index')
+    success_message = _('Task successfully deleted')
 
     def get(self, request, *args, **kwargs):
         """Shows alert and delete confirmation"""
 
-        task_id = kwargs.get('id')
+        task_id = kwargs.get('pk')
         task = Task.objects.get(id=task_id)
-        context = {'task': task}
-        if request.user.id == task.author.id:
-            return render(request, 'tasks/task_delete.html', context)
+        if request.user.id != task.author.id:
+            messages.error(
+                request, _('Only author can delete task')
+            )
+            return HttpResponseRedirect(reverse_lazy('tasks:index'))
 
-        messages.error(
-            request, _('Only author can delete task')
-        )
-        return HttpResponseRedirect(reverse_lazy('tasks:index'))
-
-    def post(self, request, *args, **kwargs):
-        """Delete task"""
-        task_id = kwargs.get('id')
-        task = Task.objects.get(id=task_id)
-        task.delete()
-        messages.success(request, _('Task successfully deleted'))
-        return HttpResponseRedirect(reverse_lazy('tasks:index'))
+        return super().get(request, *args, **kwargs)

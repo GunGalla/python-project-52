@@ -20,8 +20,8 @@ class SetUpTests(TestCase):
         self.user2 = User.objects.get(pk=2)
         self.client.force_login(self.user1)
         self.task_creation_url = reverse('tasks:create')
-        self.url_upd_task = reverse('tasks:upd_tasks', kwargs={'id': 1})
-        self.url_del_task = reverse('tasks:del_tasks', kwargs={'id': 1})
+        self.url_upd_task = reverse('tasks:upd_tasks', kwargs={'pk': 1})
+        self.url_del_task = reverse('tasks:del_tasks', kwargs={'pk': 1})
 
 
 class TasksViewTest(SetUpTests):
@@ -44,7 +44,7 @@ class TaskViewTest(SetUpTests):
 
     def test_task_view(self):
         """Testing distinct task page"""
-        url = reverse('tasks:task', kwargs={'id': 1})
+        url = reverse('tasks:task', kwargs={'pk': 1})
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
