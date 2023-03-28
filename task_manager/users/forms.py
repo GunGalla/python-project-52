@@ -3,7 +3,7 @@ from django.forms import ModelForm, CharField, PasswordInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from users.models import User
+from task_manager.users.models import User
 
 
 class UserRegistrationForm(ModelForm):

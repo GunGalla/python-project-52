@@ -5,7 +5,7 @@ from http import HTTPStatus
 from django.contrib.messages import get_messages
 from django.utils.translation import gettext_lazy as _
 
-from users.models import User
+from task_manager.users.models import User
 
 
 class SetUpTests(TestCase):

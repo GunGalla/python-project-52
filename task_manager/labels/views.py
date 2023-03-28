@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.db.models import ProtectedError
 
-from labels.models import Label
-from labels.forms import LabelCreationForm
+from task_manager.labels.models import Label
+from task_manager.labels.forms import LabelCreationForm
 
 
 class LabelsView(LoginRequiredMixin, View):

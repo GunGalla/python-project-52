@@ -1,13 +1,13 @@
 """Users app views module"""
 from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
-from users.forms import UserRegistrationForm
+from task_manager.users.forms import UserRegistrationForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.db.models import ProtectedError
 
-from users.models import User
+from task_manager.users.models import User
 
 
 class UsersView(View):

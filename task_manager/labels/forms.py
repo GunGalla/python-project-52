@@ -2,7 +2,7 @@
 from django.forms import ModelForm, CharField
 from django.utils.translation import gettext_lazy as _
 
-from labels.models import Label
+from task_manager.labels.models import Label
 
 
 class LabelCreationForm(ModelForm):

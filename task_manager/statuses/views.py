@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.db.models import ProtectedError
 
-from statuses.models import Status
-from statuses.forms import StatusCreationForm
+from task_manager.statuses.models import Status
+from task_manager.statuses.forms import StatusCreationForm
 
 
 class StatusesView(LoginRequiredMixin, View):

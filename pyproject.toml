@@ -5,7 +5,6 @@ description = "This web app can help you to watch over your tasks."
 authors = ["Iaroslav <GunGalla@gmail.com>"]
 readme = "README.md"
 packages = [
-    {include = "hexlet_task_manager"},
     {include = "task_manager"},
 ]
 repository = "https://github.com/GunGalla/python-project-52"

@@ -3,8 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
 
-from labels.models import Label
-from users.models import User
+from task_manager.labels.models import Label
+from task_manager.users.models import User
 
 
 class SetUpTests(TestCase):

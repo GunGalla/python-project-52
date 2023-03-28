@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
-from tasks.models import Task
-from tasks.forms import TaskCreationForm
+from task_manager.tasks.models import Task
+from task_manager.tasks.forms import TaskCreationForm
 from .filter import TaskFilter
 
 

@@ -1,7 +1,7 @@
 """Users app urls"""
 from django.urls import path
 
-from users.views import UsersView, UserUpdate, UsersCreate, UserDelete
+from task_manager.users.views import UsersView, UserUpdate, UsersCreate, UserDelete
 
 app_name = 'users'
 
