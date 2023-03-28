@@ -19,7 +19,7 @@ class SetUpTests(TestCase):
         self.client.force_login(self.user1)
         self.status_creation_url = reverse('statuses:create')
         self.url_upd_status = reverse('statuses:upd_status', kwargs={'pk': 1})
-        self.url_del_status = reverse('statuses:del_status', kwargs={'id': 1})
+        self.url_del_status = reverse('statuses:del_status', kwargs={'pk': 1})
 
 
 class StatusesViewTest(SetUpTests):
