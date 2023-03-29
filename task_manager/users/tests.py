@@ -2,6 +2,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
+from django.contrib.messages import get_messages
+from django.utils.translation import gettext_lazy as _
 
 from task_manager.users.models import User
 
@@ -14,10 +16,77 @@ class SetUpTests(TestCase):
         """Preparing models objects"""
         self.user1 = User.objects.get(pk=1)
         self.user2 = User.objects.get(pk=2)
-        self.client.force_login(self.user1)
+        self.user1.set_password('testpass')
+        self.user1.save()
         self.user_creation_url = reverse('users:create')
         self.url_upd_user = reverse('users:upd_user', kwargs={'pk': 1})
         self.url_del_user = reverse('users:del_user', kwargs={'pk': 1})
+        self.login_url = reverse('login')
+        self.logout_url = reverse('logout')
+        self.index_url = reverse('index')
+
+
+class IndexViewTestCase(SetUpTests):
+    """Tasks view test"""
+
+    def test_index_view(self):
+        """Testing tasks main page"""
+        response = self.client.get(self.index_url)
+
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertTemplateUsed(response, 'index.html')
+
+
+class LoginViewTestCase(SetUpTests):
+    """Login page test"""
+
+    def test_get_login_page(self):
+        """Test getting login page"""
+        response = self.client.get(self.login_url)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertTemplateUsed(response, 'login.html')
+        self.assertContains(response, '<form')
+        self.assertContains(response, 'type="submit"')
+
+    def test_post_with_valid_credentials(self):
+        """Test successful login"""
+        response = self.client.post(self.login_url, {
+            'username': 'testuser', 'password': 'testpass'
+        })
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response, reverse('index'))
+        self.assertIn('_auth_user_id', self.client.session)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), _('You logged in'))
+
+    def test_post_with_invalid_credentials(self):
+        """Test login failure"""
+        response = self.client.post(self.login_url, {
+            'username': 'testuser', 'password': 'wrongpass'
+        })
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertTemplateUsed(response, 'login.html')
+        self.assertContains(response, '<form')
+        self.assertContains(response, 'type="submit"')
+        self.assertNotIn('_auth_user_id', self.client.session)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(
+            str(messages[0]),
+            _('Please enter a correct username and password. '
+                'Note that both fields may be case-sensitive.'),
+        )
+
+
+class LogoutViewTestCase(SetUpTests):
+    """Test for logout"""
+
+    def test_logout(self):
+        """Testing logout function"""
+        self.client.force_login(self.user1)
+        response = self.client.post(self.logout_url)
+        self.assertRedirects(response, self.index_url)
 
 
 class UsersViewTest(SetUpTests):
@@ -40,7 +109,6 @@ class UserCreateViewTest(SetUpTests):
 
     def test_user_creation_form_displayed(self):
         """User creation form display test"""
-        self.client.logout()
         response = self.client.get(self.user_creation_url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
@@ -48,7 +116,6 @@ class UserCreateViewTest(SetUpTests):
 
     def test_user_created_successfully(self):
         """User create test"""
-        self.client.logout()
         user_data = {
             'first_name': 'test',
             'last_name': 'user',
@@ -68,7 +135,6 @@ class UserUpdateViewTestCase(SetUpTests):
 
     def test_unauthenticated_user_redirected_to_login(self):
         """No auth user"""
-        self.client.logout()
         response = self.client.get(self.url_upd_user)
 
         self.assertRedirects(
@@ -78,6 +144,7 @@ class UserUpdateViewTestCase(SetUpTests):
 
     def test_correct_user_displayed_on_form(self):
         """Test update form"""
+        self.client.force_login(self.user1)
         response = self.client.get(self.url_upd_user)
         form = response.context['form']
 
@@ -85,6 +152,7 @@ class UserUpdateViewTestCase(SetUpTests):
 
     def test_user_can_update_user_data(self):
         """Test user update result"""
+        self.client.force_login(self.user1)
         data = {
             'first_name': 'Updated name',
             'last_name': 'Updated surname',
@@ -101,6 +169,7 @@ class UserUpdateViewTestCase(SetUpTests):
 
     def test_invalid_form_returns_form_with_errors(self):
         """Test update errors"""
+        self.client.force_login(self.user1)
         data = {'name': '', 'first_name': 'Updated name'}
         response = self.client.post(self.url_upd_user, data)
         form = response.context['form']
@@ -113,7 +182,6 @@ class TestDeleteViewTestCase(SetUpTests):
 
     def test_redirect_if_not_logged_in(self):
         """Redirect to log in test"""
-        self.client.logout()
         response = self.client.get(self.url_del_user)
 
         self.assertRedirects(
@@ -139,6 +207,7 @@ class TestDeleteViewTestCase(SetUpTests):
 
     def test_correct_template_used(self):
         """Testing if correct template used"""
+        self.client.force_login(self.user1)
         response = self.client.get(self.url_del_user)
 
         self.assertTemplateUsed(response, 'users/user_delete.html')
