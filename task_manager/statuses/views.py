@@ -1,15 +1,13 @@
 """Statuses app views module"""
-from django.shortcuts import HttpResponseRedirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from django.db.models import ProtectedError
 
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusCreationForm
+from task_manager.mixins import DeleteProtectionMixin
 
 
 class StatusesView(LoginRequiredMixin, ListView):
@@ -43,7 +41,8 @@ class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Status successfully changed')
 
 
-class StatusDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class StatusDelete(LoginRequiredMixin, DeleteProtectionMixin,
+                   SuccessMessageMixin, DeleteView):
     """Delete status"""
     login_url = reverse_lazy('login')
 
@@ -51,13 +50,5 @@ class StatusDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'statuses/status_delete.html'
     success_url = reverse_lazy('statuses:index')
     success_message = _('Status successfully deleted')
-
-    def post(self, request, *args, **kwargs):
-        """Delete status"""
-        try:
-            return super().post(request, *args, **kwargs)
-        except ProtectedError:
-            messages.error(request, _(
-                'Status has related objects, cannot delete.'
-            ))
-            return HttpResponseRedirect(reverse_lazy('statuses:index'))
+    error_url = reverse_lazy('statuses:index')
+    error_message = _('Status has related objects, cannot delete.')

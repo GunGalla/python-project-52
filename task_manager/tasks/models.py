@@ -12,7 +12,7 @@ class Task(models.Model):
     """Status model"""
 
     author = models.ForeignKey(
-        to=User, on_delete=models.PROTECT, related_name=_('author')
+        to=User, on_delete=models.PROTECT, related_name='author'
     )
 
     name = models.CharField(max_length=100, unique=True, verbose_name=_('Name'))
@@ -24,7 +24,7 @@ class Task(models.Model):
     status = models.ForeignKey(
         to=Status,
         on_delete=models.PROTECT,
-        related_name='status',
+        related_name='tasks',
         verbose_name=_('Status')
     )
 
@@ -32,7 +32,7 @@ class Task(models.Model):
         to=User,
         on_delete=models.PROTECT,
         null=True, blank=True,
-        related_name='executor',
+        related_name='tasks',
         verbose_name=_('Executor')
     )
 

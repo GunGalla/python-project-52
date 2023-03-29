@@ -1,14 +1,13 @@
 """labels app views module"""
-from django.shortcuts import HttpResponseRedirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelCreationForm
+from task_manager.mixins import DeleteProtectionMixin
 
 
 class LabelsView(LoginRequiredMixin, SuccessMessageMixin, ListView):
@@ -42,7 +41,8 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Label successfully changed')
 
 
-class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(LoginRequiredMixin, DeleteProtectionMixin,
+                      SuccessMessageMixin, DeleteView):
     """Delete label"""
     login_url = reverse_lazy('login')
 
@@ -50,15 +50,5 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'labels/label_delete.html'
     success_url = reverse_lazy('labels:index')
     success_message = _('Label successfully deleted')
-
-    def post(self, request, *args, **kwargs):
-        """Delete label"""
-        label_id = kwargs.get('pk')
-        label = Label.objects.get(id=label_id)
-        print(label_id)
-        if label.tasks.count() > 0:
-            messages.error(request, _(
-                'Label has related objects, cannot delete.'
-            ))
-            return HttpResponseRedirect(reverse_lazy('labels:index'))
-        return super().post(request, *args, **kwargs)
+    error_message = _('Label has related objects, cannot delete.')
+    error_url = reverse_lazy('labels:index')
