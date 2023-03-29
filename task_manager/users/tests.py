@@ -112,7 +112,7 @@ class UserCreateViewTest(SetUpTests):
         response = self.client.get(self.user_creation_url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'users/user_create.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_user_created_successfully(self):
         """User create test"""

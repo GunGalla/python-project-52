@@ -25,9 +25,13 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     model = Label
     form_class = LabelCreationForm
-    template_name = 'labels/label_create.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('labels:index')
     success_message = _('Label successfully created')
+    extra_context = {
+        'title': _('Create label'),
+        'button': _('Create'),
+    }
 
 
 class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -36,9 +40,13 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     model = Label
     form_class = LabelCreationForm
-    template_name = 'labels/label_update.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('labels:index')
     success_message = _('Label successfully changed')
+    extra_context = {
+        'title': _('Update label'),
+        'button': _('Update'),
+    }
 
 
 class LabelDeleteView(LoginRequiredMixin, DeleteProtectionMixin,

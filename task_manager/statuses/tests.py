@@ -45,7 +45,7 @@ class StatusCreateViewTest(SetUpTests):
         response = self.client.get(self.status_creation_url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'statuses/status_create.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_status_created_successfully(self):
         """Status create test"""
@@ -75,7 +75,7 @@ class StatusUpdateViewTestCase(SetUpTests):
         response = self.client.get(self.url_upd_status)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'statuses/status_update.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_correct_status_displayed_on_form(self):
         """Test update form"""

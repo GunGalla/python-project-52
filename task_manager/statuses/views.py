@@ -25,9 +25,13 @@ class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     model = Status
     form_class = StatusCreationForm
-    template_name = 'statuses/status_create.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('statuses:index')
     success_message = _('Status successfully created')
+    extra_context = {
+        'title': _('Create status'),
+        'button': _('Create'),
+    }
 
 
 class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -36,9 +40,13 @@ class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     model = Status
     form_class = StatusCreationForm
-    template_name = 'statuses/status_update.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('statuses:index')
     success_message = _('Status successfully changed')
+    extra_context = {
+        'title': _('Update status'),
+        'button': _('Update'),
+    }
 
 
 class StatusDelete(LoginRequiredMixin, DeleteProtectionMixin,

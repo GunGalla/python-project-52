@@ -22,9 +22,13 @@ class UsersCreate(SuccessMessageMixin, CreateView):
 
     model = User
     form_class = UserRegistrationForm
-    template_name = 'users/user_create.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('login')
     success_message = _('User successfully registered')
+    extra_context = {
+        'title': _('Registration'),
+        'button': _('Register'),
+    }
 
 
 class UserUpdate(CheckUserPermissionMixin, SuccessMessageMixin, UpdateView):
@@ -32,9 +36,13 @@ class UserUpdate(CheckUserPermissionMixin, SuccessMessageMixin, UpdateView):
 
     model = User
     form_class = UserRegistrationForm
-    template_name = 'users/user_update.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('users:index')
     success_message = _('User successfully changed')
+    extra_context = {
+        'title': _('User update'),
+        'button': _('Update'),
+    }
 
 
 class UserDelete(DeleteProtectionMixin, CheckUserPermissionMixin,

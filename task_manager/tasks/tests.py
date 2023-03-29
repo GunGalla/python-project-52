@@ -60,7 +60,7 @@ class TaskCreateViewTest(SetUpTests):
         response = self.client.get(self.task_creation_url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'tasks/task_create.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_task_created_successfully(self):
         """Task create test"""
@@ -93,7 +93,7 @@ class TaskUpdateViewTestCase(SetUpTests):
         response = self.client.get(self.url_upd_task)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'tasks/task_update.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_correct_task_displayed_on_form(self):
         """Test update form"""

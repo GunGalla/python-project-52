@@ -37,10 +37,14 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = reverse_lazy('login')
 
     model = Task
-    template_name = 'tasks/task_create.html'
+    template_name = 'form.html'
     form_class = TaskCreationForm
     success_url = reverse_lazy('tasks:index')
     success_message = _('Task successfully created')
+    extra_context = {
+        'title': _('Create task'),
+        'button': _('Create'),
+    }
 
     def form_valid(self, form):
         """Set author of the task"""
@@ -54,10 +58,14 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     login_url = reverse_lazy('login')
 
     model = Task
-    template_name = 'tasks/task_update.html'
+    template_name = 'form.html'
     form_class = TaskCreationForm
     success_url = reverse_lazy('tasks:index')
     success_message = _('Task successfully changed')
+    extra_context = {
+        'title': _('Update task'),
+        'button': _('Update'),
+    }
 
 
 class TaskDeleteView(LoginRequiredMixin, DelTaskPermissionMixin,

@@ -45,7 +45,7 @@ class LabelCreateViewTest(SetUpTests):
         response = self.client.get(self.label_creation_url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'labels/label_create.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_label_created_successfully(self):
         """Label create test"""
@@ -75,7 +75,7 @@ class LabelUpdateViewTestCase(SetUpTests):
         response = self.client.get(self.url_upd_label)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'labels/label_update.html')
+        self.assertTemplateUsed(response, 'form.html')
 
     def test_correct_label_displayed_on_form(self):
         """Test update form"""
