@@ -2,26 +2,23 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelCreationForm
-from task_manager.mixins import DeleteProtectionMixin
+from task_manager.mixins import DeleteProtectionMixin, CheckLoginMixin
 
 
-class LabelsView(LoginRequiredMixin, SuccessMessageMixin, ListView):
+class LabelsView(CheckLoginMixin, SuccessMessageMixin, ListView):
     """labels list page"""
-    login_url = reverse_lazy('login')
 
     model = Label
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
 
 
-class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class LabelCreateView(CheckLoginMixin, SuccessMessageMixin, CreateView):
     """Views, related to label creation"""
-    login_url = reverse_lazy('login')
 
     model = Label
     form_class = LabelCreationForm
@@ -34,9 +31,8 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     }
 
 
-class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class LabelUpdateView(CheckLoginMixin, SuccessMessageMixin, UpdateView):
     """Edit label data."""
-    login_url = reverse_lazy('login')
 
     model = Label
     form_class = LabelCreationForm
@@ -49,10 +45,9 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class LabelDeleteView(LoginRequiredMixin, DeleteProtectionMixin,
+class LabelDeleteView(CheckLoginMixin, DeleteProtectionMixin,
                       SuccessMessageMixin, DeleteView):
     """Delete label"""
-    login_url = reverse_lazy('login')
 
     model = Label
     template_name = 'labels/label_delete.html'

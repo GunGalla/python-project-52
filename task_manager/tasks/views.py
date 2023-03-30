@@ -3,19 +3,17 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django_filters.views import FilterView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.tasks.models import Task
 from task_manager.users.models import User
 from task_manager.tasks.forms import TaskCreationForm
-from task_manager.mixins import DelTaskPermissionMixin
+from task_manager.mixins import DelTaskPermissionMixin, CheckLoginMixin
 from .filter import TaskFilter
 
 
-class TasksView(LoginRequiredMixin, FilterView):
+class TasksView(CheckLoginMixin, FilterView):
     """tasks list page"""
-    login_url = reverse_lazy('login')
 
     model = Task
     template_name = 'tasks/tasks.html'
@@ -23,18 +21,16 @@ class TasksView(LoginRequiredMixin, FilterView):
     filterset_class = TaskFilter
 
 
-class TaskView(LoginRequiredMixin, DetailView):
+class TaskView(CheckLoginMixin, DetailView):
     """Current task page"""
-    login_url = reverse_lazy('login')
 
     model = Task
     template_name = 'tasks/task.html'
     context_object_name = 'task'
 
 
-class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(CheckLoginMixin, SuccessMessageMixin, CreateView):
     """Views, related to task creation"""
-    login_url = reverse_lazy('login')
 
     model = Task
     template_name = 'form.html'
@@ -53,9 +49,8 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(CheckLoginMixin, SuccessMessageMixin, UpdateView):
     """Edit task data."""
-    login_url = reverse_lazy('login')
 
     model = Task
     template_name = 'form.html'
@@ -68,10 +63,9 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class TaskDeleteView(LoginRequiredMixin, DelTaskPermissionMixin,
+class TaskDeleteView(CheckLoginMixin, DelTaskPermissionMixin,
                      SuccessMessageMixin, DeleteView):
     """Delete task"""
-    login_url = reverse_lazy('login')
 
     model = Task
     template_name = 'tasks/task_delete.html'

@@ -6,7 +6,11 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.users.models import User
-from task_manager.mixins import CheckUserPermissionMixin, DeleteProtectionMixin
+from task_manager.mixins import (
+    DeleteProtectionMixin,
+    CheckLoginMixin,
+    CheckUserPermissionMixin
+)
 
 
 class UsersView(ListView):
@@ -31,7 +35,8 @@ class UsersCreate(SuccessMessageMixin, CreateView):
     }
 
 
-class UserUpdate(CheckUserPermissionMixin, SuccessMessageMixin, UpdateView):
+class UserUpdate(CheckLoginMixin, CheckUserPermissionMixin,
+                 SuccessMessageMixin, UpdateView):
     """Edit user's data."""
 
     model = User
@@ -45,8 +50,8 @@ class UserUpdate(CheckUserPermissionMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class UserDelete(DeleteProtectionMixin, CheckUserPermissionMixin,
-                 SuccessMessageMixin, DeleteView):
+class UserDelete(CheckLoginMixin, DeleteProtectionMixin,
+                 CheckUserPermissionMixin, SuccessMessageMixin, DeleteView):
     """Delete user"""
 
     model = User

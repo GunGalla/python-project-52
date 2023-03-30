@@ -2,26 +2,23 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusCreationForm
-from task_manager.mixins import DeleteProtectionMixin
+from task_manager.mixins import DeleteProtectionMixin, CheckLoginMixin
 
 
-class StatusesView(LoginRequiredMixin, ListView):
+class StatusesView(CheckLoginMixin, ListView):
     """Statuses list page"""
-    login_url = reverse_lazy('login')
 
     model = Status
     template_name = 'statuses/statuses.html'
     context_object_name = 'statuses'
 
 
-class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class StatusCreate(CheckLoginMixin, SuccessMessageMixin, CreateView):
     """Views, related to statuses creation"""
-    login_url = reverse_lazy('login')
 
     model = Status
     form_class = StatusCreationForm
@@ -34,9 +31,8 @@ class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     }
 
 
-class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class StatusUpdate(CheckLoginMixin, SuccessMessageMixin, UpdateView):
     """Edit status data."""
-    login_url = reverse_lazy('login')
 
     model = Status
     form_class = StatusCreationForm
@@ -49,10 +45,9 @@ class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class StatusDelete(LoginRequiredMixin, DeleteProtectionMixin,
+class StatusDelete(CheckLoginMixin, DeleteProtectionMixin,
                    SuccessMessageMixin, DeleteView):
     """Delete status"""
-    login_url = reverse_lazy('login')
 
     model = Status
     template_name = 'statuses/status_delete.html'

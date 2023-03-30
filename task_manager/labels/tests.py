@@ -67,7 +67,7 @@ class LabelUpdateViewTestCase(SetUpTests):
 
         self.assertRedirects(
             response,
-            reverse('login') + '?next=' + self.url_upd_label,
+            reverse('login'),
         )
 
     def test_authenticated_user_can_access_view(self):
@@ -112,7 +112,7 @@ class TestDeleteViewTestCase(SetUpTests):
 
         self.assertRedirects(
             response,
-            f'{reverse("login")}?next={self.url_del_label}'
+            reverse("login"),
         )
 
     def test_successful_label_deletion(self):

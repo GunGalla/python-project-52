@@ -85,7 +85,7 @@ class TaskUpdateViewTestCase(SetUpTests):
 
         self.assertRedirects(
             response,
-            reverse('login') + '?next=' + self.url_upd_task,
+            reverse('login'),
         )
 
     def test_authenticated_user_can_access_view(self):
@@ -135,7 +135,7 @@ class TestDeleteViewTestCase(SetUpTests):
 
         self.assertRedirects(
             response,
-            f'{reverse("login")}?next={self.url_del_task}'
+            reverse("login")
         )
 
     def test_only_author_can_delete_task(self):
